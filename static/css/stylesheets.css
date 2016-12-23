@@ -1,0 +1,57 @@
+
+.navbar {
+	font-size: 15px;
+	
+}
+
+.header-image {
+    display: block;
+    width: 100%;
+    /*height: 30%;*/
+    text-align: center;
+    background-color:#3490D7;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+.container, html, body {
+	height: 100%;
+	width: 100%;
+}
+
+
+
+/*==========================CONTENT==========================*/
+
+.list-group {
+	font-size: 30px;
+	width:100%;
+	height: 100%;
+	margin:0px;
+}
+
+.content.container {
+	padding:0px;
+	margin: 0px;
+}
+
+
+
+#download, #join-meeting, #setup-meeting, #do-meeting, #troubleshooting {
+	width: 100%;
+	height:30%;
+	text-align: center;
+	font-size: 30px;
+}
+
+#download-text,#join-meeting-text {
+	font-size: 18px;
+	text-align: left;
+}
+
+#download-link {
+	font-size: 21px;
+	color: #D28EE4;
+}

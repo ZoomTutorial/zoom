@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%include partials/head.ejs%>  
+</head>
+
+<body id = "content-body">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"><%include partials/navbar.ejs%></nav>  
+    
+    <!-- Full Width Image Header -->
+    <!--TODO how to make content list 100% wide?-->
+    <header class = "content header-image">
+            <div class="headline">
+            <div class="container">
+                <h1>Content</h1>  
+                <h2 class = "text-muted"> Hover over names </h2>          
+            </div>
+        </div>
+    </header>
+    <!-- Page Content -->
+    <div class = "content container">
+    <div class="content-list">
+        <!-- List group -->
+          <ul class="list-group">
+            <li class="list-group-item" id = "download" data-toggle="collapse" data-target="#download-text">Download and Install
+                <div class = "collapse" id = "download-text"> On a tablet or phone, download the Zoom app.  Note that Zoom is not compatible with Windows Phone, but will work with iOS and Android devices. <br> 
+                On a computer, you can download the software directly here:  <a href = "https://zoom.us/download" id = "download-link"> Zoom </a>, or it will download and install automatically the first time a Zoom link is clicked in your browser. 
+                </div>
+            </li>
+            <li class="list-group-item" id = "join-meeting" data-toggle="collapse" data-target="#join-meeting-text">Join Meeting 
+                <div class = "collapse" id = "join-meeting-text"> 
+                Click on Zoom link, or open Zoom App (called “Start Zoom” on a desktop computer) and enter Meeting ID. <br>
+                A popup dialog will ask if you would like to join a meeting or sign in. <br>
+                Select Join Meeting <br>
+                Meeting ID: Enter the meeting ID here. <br>
+                Your Name: Enter the name that will identify your site, such as patient name or ID.  
+                </div>
+            </li>
+            <li class="list-group-item" id = "setup-meeting">Set up Meeting</li>
+            <li class="list-group-item" id = "do-meeting">During meeting</li>
+            <li class="list-group-item" id = "troubleshooting">Troubleshooting</li>
+          </ul>
+    </div>   
+
+    <!-- Footer -->
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>Copyright &copy; Your Website 2014</p>
+            </div>
+        </div>
+    </footer>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- TODO should I put that in separate script? -->
+    <script src = "js/content.js">
+    </script>
+
+</body>
+
+</html>

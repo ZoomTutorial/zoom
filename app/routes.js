@@ -3,7 +3,7 @@ module.exports = function (app,passport) {
 
 //============================HOME PAGE============================
 app.get('/', function (req,res) {
-	res.render ('/views/index.handlebars'); //TODO load handlebars index templ
+	res.render ('index.ejs'); //TODO load handlebars index templ
 });
 
 
@@ -11,30 +11,37 @@ app.get('/', function (req,res) {
 //============================LOGIN============================
 app.get('/login', function (req,res) {
 		//render page and pass flash data if exists
-		res.render('login.handlebars', {
+		res.render('login.ejs', {
 			message: req.flash ('loginMessage')});
 });
-//app.post('/login',do passport stuff here)
 
 
-
+ // process the login form
+    app.post('/login', passport.authenticate('local-login', {
+        successRedirect : '/content', // redirect to the secure profile section
+        failureRedirect : '/login', // redirect back to the signup page if there is an error
+        failureFlash : true // allow flash messages
+    }));
+    
 //============================SIGN UP============================
 app.get('/signup', function (req,res) {
 	//render page and pass flash data if exists
-	res.render('signup.handlebars', {message: req.flash ('signupMessage')});
+	res.render('signup.ejs', {message: req.flash ('signupMessage')});
 });
 
-//
-//signup form
-//app.post ('/signup', do all passport stuff)
+// process the signup form
+    app.post('/signup', passport.authenticate('local-signup', {
+        successRedirect : '/profile', // redirect to the secure profile section
+        failureRedirect : '/signup', // redirect back to the signup page if there is an error
+        failureFlash : true // allow flash messages
+    }));
 
 
-
-//============================MY ACCOUNT============================
+//============================PROFILE============================
 //protected so you have to be logged in to visit
 //route middleware to verify
-app.get('/account', isLoggedIn, function (req,res) {
-	res.render('account.handlebars', {
+app.get('/profile', isLoggedIn, function (req,res) {
+	res.render('profile.ejs', {
 		user : req.user //get user our of sesh and pass to template
 	})
 })
@@ -43,28 +50,28 @@ app.get('/account', isLoggedIn, function (req,res) {
 
 //============================CONTENT============================
 app.get('/content', function (req,res) {
-	res.render('content.handlebars'); //check if need to send variables
+	res.render('content.ejs'); //check if need to send variables
 });
 
 
 
 //============================QUIZZ============================
 app.get('/quizz', function (req,res) {
-	res.render('quizz.handlebars'); //check if pass in variables
+	res.render('quizz.ejs'); //check if pass in variables
 });
 
 
 
 //============================PROGRESS============================
-app.get('/progress', isLogeedIn, function (req,res) {
-	res.render ('progress.handlebars'); //check if pass in var
+app.get('/progress', isLoggedIn, function (req,res) {
+	res.render ('progress.ejs'); //check if pass in var
 });
 
 
 
 //============================COURSE COMPLETE============================
 app.get('/coursepass', isLoggedIn, function (req,res) {
-	res.render('coursepass.handlebars');//check if pass in var
+	res.render('coursepass.ejs');//check if pass in var
 });
 
 
@@ -86,3 +93,4 @@ function isLoggedIn (req,res,next) {
     //if not redirect them to home page
     res.redirect('/');
 };
+}
