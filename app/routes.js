@@ -49,7 +49,7 @@ app.get('/profile', isLoggedIn, function (req,res) {
 
 
 //============================CONTENT============================
-app.get('/content', function (req,res) {
+app.get('/content', isLoggedIn, function (req,res) {
 	res.render('content.ejs'); //check if need to send variables
 });
 

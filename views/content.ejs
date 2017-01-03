@@ -8,10 +8,10 @@
 <body id = "content-body">
 
     <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation"><%include partials/navbar.ejs%></nav>  
+    <nav class="content navbar navbar-inverse navbar-fixed-top" role="navigation"><%include partials/navbar.ejs%>
+    </nav>  
     
     <!-- Full Width Image Header -->
-    <!--TODO how to make content list 100% wide?-->
     <header class = "content header-image">
             <div class="headline">
             <div class="container">
@@ -25,9 +25,35 @@
     <div class="content-list">
         <!-- List group -->
           <ul class="list-group">
-            <li class="list-group-item" id = "download" data-toggle="collapse" data-target="#download-text">Download and Install
-                <div class = "collapse" id = "download-text"> On a tablet or phone, download the Zoom app.  Note that Zoom is not compatible with Windows Phone, but will work with iOS and Android devices. <br> 
-                On a computer, you can download the software directly here:  <a href = "https://zoom.us/download" id = "download-link"> Zoom </a>, or it will download and install automatically the first time a Zoom link is clicked in your browser. 
+            <li class="list-group-item" id = "download" data-toggle="collapse" data-target="#download-text">
+                <div class = "list-group-header">Download and Install</div>
+                <div class = "collapse" id = "download-text"> 
+                    <div class = "download-text-subheader">Tablet or Phone </div>
+                    Download the Zoom app.  Note that Zoom is not compatible with Windows Phone, but will work with iOS and Android devices. <br> 
+                    <div class = "download-text-subheader"> PC or Mac </div> 
+                    Download the software directly here:  <a href = "https://zoom.us/download" id = "download-link"> Zoom </a>, or it will download and install automatically the first time a Zoom link is clicked in your browser. <br>
+                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                          <ol class="carousel-indicators">
+                            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                          </ol>
+                          <div class="carousel-inner" role="listbox">
+                            <div class="carousel-item active">
+                              <img src = "images/download-content.png" alt="First slide" >                 
+                            </div>
+                            <div class="carousel-item">
+                              <img src = "images/download-content4.gif" alt="Second slide">
+                            </div>
+                          </div>
+                          <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                            <span class="icon-prev" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                          </a>
+                          <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                            <span class="icon-next" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                          </a>
+                        </div>
                 </div>
             </li>
             <li class="list-group-item" id = "join-meeting" data-toggle="collapse" data-target="#join-meeting-text">Join Meeting 
@@ -39,9 +65,38 @@
                 Your Name: Enter the name that will identify your site, such as patient name or ID.  
                 </div>
             </li>
-            <li class="list-group-item" id = "setup-meeting">Set up Meeting</li>
+            <li class="list-group-item" id = "setup-meeting" data-toggle="collapse" data-target="#setup-meeting-text">Set up Meeting
+                <div class = "collapse" id = "setup-meeting-text"> 
+                <!-- TODO include video -->
+                Joining a meeting with Video <br>
+                Viewing your camera in Zoom <br>
+                When your video is on, you will see your camera’s image on the screen. <br>
+                Position the camera so that people are on shown in the frame and they are not in shadow. <br>
+                Video settings <br>
+                PICTURE <br>
+                Open the Video Options menu by clicking on the caret next to the camera icon at the bottom of the Zoom window.  Menu choices include a selection of cameras and a link to the Video Settings dialog. <br>
+                Click “Video Settings” to open the video settings dialog by clicking on the caret next to the camera icon at the bottom of the Zoom window. <br>
+                PICTURE <br>
+                Video Settings shows a live image from your camera. Above the image is a dropdown box to select a camera to use if you have more than one camera. <br>
+                </div>
+            </li>
             <li class="list-group-item" id = "do-meeting">During meeting</li>
-            <li class="list-group-item" id = "troubleshooting">Troubleshooting</li>
+            <li class="list-group-item" id = "troubleshooting" data-toggle="collapse" data-target="#troubleshooting-text">Troubleshooting
+                <div class = "collapse" id = "troubleshooting-text">
+                Troubleshooting Video <br>
+                No camera icon <br>
+                Camera not connected <br>
+                Connect your camera to a different USB port and wait a minute for the camera icon to appear. You may have to click the icon to turn on the camera once it appears <br>
+                Camera driver not loaded or camera not compatible <br>
+                You will not use the camera for this session, but contact your local IT support to fix the problem for next time. <br>
+                Camera icon and no video <br>
+                Click on the camera icon to turn the image on. <br>
+                If you see a totally black image, the cameras lens may be covered or your camera is being used in another program <br>
+                Remove any obstructions, including a lens cover, from the camera.
+                Close all other applications so that Zoom can capture the camera.  If this doesn’t work, restart the computer and try again.
+                If the problem persists, you will not use the camera for this session, but contact your local IT support to fix the problem for next time.
+                </div>
+            </li>
           </ul>
     </div>   
 
@@ -63,7 +118,7 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
     <!-- TODO should I put that in separate script? -->
-    <script src = "js/content.js">
+    <script src = "js/func.js">
     </script>
 
 </body>

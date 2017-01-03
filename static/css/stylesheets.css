@@ -37,21 +37,54 @@
 	margin: 0px;
 }
 
+.content.header-image {
+	background-image:url('../images/content-header-background.jpg');
+	background-position: bottom;
+	color: #E4F0F3;
+}
 
+.text-muted {
+	color:#71ACBA;
+}
 
 #download, #join-meeting, #setup-meeting, #do-meeting, #troubleshooting {
 	width: 100%;
 	height:30%;
 	text-align: center;
 	font-size: 30px;
+	/*background-color: red;*/
 }
 
-#download-text,#join-meeting-text {
-	font-size: 18px;
+#download-text,#join-meeting-text, #setup-meeting-text, #troubleshooting-text {
+	font-size: 16px;
 	text-align: left;
+	padding: 13px;
+	margin:0px;
+	color: black;
 }
 
 #download-link {
-	font-size: 21px;
+	font-size: 18px;
 	color: #D28EE4;
+}
+
+.list-group-header{
+	padding: 10x;
+}
+
+/*on collapse change color of header*/
+
+.download-text-subheader {
+	font-size: 20px;
+	color: #1BD7B8;
+}
+
+/*==========================LOGIN==========================*/
+.login {
+	background-image: url('../images/login.jpg');
+	background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
