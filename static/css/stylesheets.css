@@ -55,7 +55,7 @@
 	/*background-color: red;*/
 }
 
-#download-text,#join-meeting-text, #setup-meeting-text, #troubleshooting-text {
+#content-text1,#content-text2, #content-text3, #content-text5 {
 	font-size: 16px;
 	text-align: left;
 	padding: 13px;
