@@ -1,9 +1,8 @@
 //load what we need
 //methods of logging in are strategies
 var LocalStrategy = require ('passport-local').Strategy;
+var User = require ('../app/models/user')
 
-//load user model
-var User = require ('../app/models/user');
 
 //expose function to app
 module.exports = function (passport) {

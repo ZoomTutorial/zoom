@@ -5,7 +5,7 @@ var app      = express();
 var port     = process.env.PORT || 8080;
 var mongoose = require('mongoose');
 
-
+var nodemailer = require("nodemailer");
 var passport = require('passport');
 var flash    = require('connect-flash');
 
@@ -19,7 +19,7 @@ var configDB = require('./config/database.js');
 mongoose.connect(configDB.url); // connect to our database
 var db = mongoose.connection;
 //email confirmation
-nev = require('email-verification')(mongoose);
+
 
 require('./config/passport')(passport); // pass passport for configuration
 
