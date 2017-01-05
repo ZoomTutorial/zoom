@@ -1,6 +1,5 @@
 node_modules/
-._*
-.DS_Store
-*._.DS_Store
+**/._*
+**/.DS_Store*
+**/._.DS_Store*
 server.js
-email-conf.js
