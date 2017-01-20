@@ -2,16 +2,27 @@
 <!doctype html>
 <html>
 <head>
-    <title>Node Authentication</title>
+    <title>Email Confirmed</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
     <link rel = "stylesheet" href = "css/stylesheets.css">
     <style>
         body        { padding-top:80px; }
     </style>
+    <script src="https://use.fontawesome.com/f20b095bb4.js"></script>
 </head>
+<!-- email confirmation jumbotron -->
 <body class = "login">
 	<div class="container">
+		<div class="jumbotron jumbotron-fluid">
+		  <div class="container">
+		    <h3 class="display-3"> Email Confirmation Successful 
+		    	<span><i class="fa fa-check-circle-o" aria-hidden="true"></i></span>
+		    </h3>  
+		    <p class="lead">Now sign in using login below</p>
+			</div>
+		</div>
+		<!-- login modal -->
 		<div class="col-sm-6 col-sm-offset-3">
 		    <%include partials/loginmodal.ejs%>
 		</div>

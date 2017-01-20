@@ -73,7 +73,6 @@
 }
 
 /*on collapse change color of header*/
-
 .download-text-subheader {
 	font-size: 20px;
 	color: #1BD7B8;
@@ -81,10 +80,15 @@
 
 /*==========================LOGIN==========================*/
 .login {
-	background-image: url('../images/login.jpg');
+/*	background-image: url('../images/login.jpg');
 	background-repeat: no-repeat;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: cover;
+    background-size: cover;*/
+}
+
+/*==========================EMAil CONFIRM==========================*/
+.fa-check-circle-o {
+	color: #118E47;
 }

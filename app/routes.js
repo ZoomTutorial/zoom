@@ -82,7 +82,8 @@ if((req.protocol+"://"+req.get('host'))==("http://"+host)) {
 	console.log("Domain is matched. Information is from Authentic email");
 	if(req.query.id==rand) {
 		console.log("email is verified");
-		res.end("<h1>Email "+mailOptions.to+" is been Successfully verified");
+		//res.end("<h1>Email "+mailOptions.to+" is been Successfully verified");
+		res.render('emailconfirm.ejs', {message: req.flash ('signupMessage')});
 	} else {
 		console.log("email is not verified");
 		res.end("<h1>Bad Request</h1>");
