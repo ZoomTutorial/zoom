@@ -99,9 +99,9 @@ if((req.protocol+"://"+req.get('host'))==("http://"+host)) {
 //route middleware to verify
 app.get('/profile', isLoggedIn, function (req,res) {
 	res.render('profile.ejs', {
-		user : req.user //get user our of sesh and pass to template
-	})
-})
+		user : req.user, //get user our of sesh and pass to template
+	});
+});
 
 
 

@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>Node Authentication</title>
+    <title>Profile</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <style>
@@ -12,26 +12,47 @@
 <div class="container">
 
     <div class="page-header text-center">
-        <h1><span class="fa fa-user"></span> My Account</h1>
+        <h1><span class="fa fa-user"></span> My Profile</h1>
         <a href="/logout" class="btn btn-default btn-sm">Logout</a>
     </div>
 
-    <div class="row">
-        <!-- LOCAL INFORMATION -->
-        <div class="col-sm-6">
-            <div class="well">
-                <h3><span class="fa fa-user"></span> Local</h3>
+    <div class="manage-account">
+        <div class = "account-email"> 
+            <label for="basic-url">Email: </label>
+            <p> <%= user.local.email %> </p> 
+        </div>
+    <hr>
+    <div class = "account-password">
+        <label for="basic-url">Password: </label>
+        <a href = "#" data-toggle="modal" data-target="#change-password-modal">Change Password</a><br>
 
-                    <p>
-                        <strong>id</strong>: <%= user._id %><br>
-                        <strong>email</strong>: <%= user.local.email %><br>
-                        <strong>password</strong>: <%= user.local.password %>
-                    </p>
-
+       <div class="modal" id="change-password-modal">
+        <div class="modal-header">
+            <h3>Change Password <span class="extra-title muted"></span></h3>
+        </div>
+        <div class="modal-body form-horizontal">
+        <div class="control-group">
+            <label for="current_password" class="control-label">Current Password</label>
+            <div class="controls">
+                <input type="password" name="current_password">
+            </div>
+        </div>
+        <div class="control-group">
+            <label for="new_password" class="control-label">New Password</label>
+            <div class="controls">
+                <input type="password" name="new_password">
+            </div>
+        </div>
+        <div class="control-group">
+            <label for="confirm_password" class="control-label">Confirm Password</label>
+            <div class="controls">
+                <input type="password" name="confirm_password">
             </div>
         </div>
 
     </div>
+</div>
+      
 
 </div>
 </body>
