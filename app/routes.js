@@ -113,9 +113,9 @@ app.get('/content', isLoggedIn, function (req,res) {
 
 
 // //============================QUIZZ============================
-// app.get('/quizz', function (req,res) {
-// 	res.render('quizz.ejs'); //check if pass in variables
-// });
+app.get('/quizz', function (req,res) {
+	res.render('quizz.ejs'); //check if pass in variables
+});
 
 
 
