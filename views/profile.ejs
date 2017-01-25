@@ -20,6 +20,11 @@
         <a href="/logout" class="btn btn-default btn-sm">Logout</a>
     </div>
 
+    <!-- show any messages that come back with authentication -->
+    <% if (message.length > 0) { %>
+        <div class="alert alert-danger"><%= message %></div>
+    <% } %>
+
     <div class="manage-account">
         <div class = "account-email"> 
             <label for="basic-url">Email: </label>
@@ -34,14 +39,15 @@
             <div class="modal-dialog">
             <!-- modal content -->
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <form action = "/profile" method = "post">
+                        <div class="modal-header">
                         <h3>Change Password <span class="extra-title muted"></span></h3>
                     </div>
                     <div class="modal-body form-horizontal">
                         <div class="control-group">
                             <label for="current_password" class="control-label">Current Password</label>
                             <div class="controls">
-                                <input type="password" name="current_password">
+                                <input type="password" name="password">
                             </div>
                         </div>
                         <div class="control-group">
@@ -61,8 +67,10 @@
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
+                </form>
                 </div>
             </div>
+        <!-- </form> -->
         </div>
     </div> 
 

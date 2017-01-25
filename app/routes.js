@@ -100,10 +100,19 @@ if((req.protocol+"://"+req.get('host'))==("http://"+host)) {
 app.get('/profile', isLoggedIn, function (req,res) {
 	res.render('profile.ejs', {
 		user : req.user, //get user our of sesh and pass to template
+		message: req.flash ('changePasswordMessage')
 	});
 });
 
-
+app.post('/profile', function () {
+	console.log('pls work');
+	return res.render('/content');
+	// return passport.authenticate('local-changepassword', {
+ //        successRedirect : '/profile1', //TODO profile1 with changed password
+ //        failureRedirect : '/profile', 
+ //        failureFlash : true // allow flash messages
+ //    });
+});
 
 //============================CONTENT============================
 app.get('/content', isLoggedIn, function (req,res) {
@@ -113,9 +122,9 @@ app.get('/content', isLoggedIn, function (req,res) {
 
 
 // //============================QUIZZ============================
-app.get('/quizz', function (req,res) {
-	res.render('quizz.ejs'); //check if pass in variables
-});
+// app.get('/quizz', function (req,res) {
+// 	res.render('quizz.ejs'); //check if pass in variables
+// });
 
 
 
