@@ -25,7 +25,12 @@
 	width: 100%;
 }
 
+/*==========================EMAil CONFIRM==========================*/
 
+.nav-glyph {
+	min-width: 80%;
+	eight: 80%;
+}
 
 /*==========================CONTENT==========================*/
 
@@ -97,4 +102,26 @@
 	color: #118E47;
 }
 
-/*==========================PROFILE==========================/
+/*==========================PROFILE==========================*/
+/*set up input fields width*/
+.col-md-4 {
+	padding-left:30px;
+	padding-right:30px;
+	border-radius:0;
+}
+
+/*format input fields*/
+.input-account-pass {
+	border-radius:0px;
+}
+
+
+
+/*==========================FOR COMPONENTS==========================*/
+.btn {
+	border-radius:2px;
+}
+
+input, button {
+	border-radius:0px;
+}

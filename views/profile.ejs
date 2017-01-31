@@ -8,6 +8,8 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link href = "css/stylesheets.css" rel = "stylesheet">
+
     <style>
         body        { padding-top:80px; word-wrap:break-word; }
     </style>
@@ -26,53 +28,64 @@
     <% } %>
 
     <div class="manage-account">
+        <!-- EMAIL MANAGE -->
         <div class = "account-email"> 
             <label for="basic-url">Email: </label>
             <p> <%= user.local.email %> </p> 
         </div>
     <hr>
+    <!-- PASSWORD MANAGE -->
     <div class = "account-password">
         <label for="basic-url">Password: </label>
         <a href = "#change-password-modal" data-toggle="modal">Change Password</a><br>
-       <!-- Modal -->
-         <div class="modal fade" id="change-password-modal" role="dialog">
-            <div class="modal-dialog">
-            <!-- modal content -->
-                <div class="modal-content">
-                    <form action = "/profile" method = "post">
-                        <div class="modal-header">
-                        <h3>Change Password <span class="extra-title muted"></span></h3>
-                    </div>
-                    <div class="modal-body form-horizontal">
-                        <div class="control-group">
+
+    <form action = "/profile" method = "post">
+    <!-- Modal -->
+    <div class="modal fade" id="change-password-modal" role="dialog">
+    <!-- modal content -->
+            <div class="modal-content">
+                <!-- header -->
+                <div class="modal-header">
+                    <h3>Change Password <span class="extra-title muted"></span></h3>
+                </div>
+                <!-- body -->
+                        <!-- EMAIL MANAGE -->
+                <div class = "account-email"> 
+                    <label for="basic-url">Email: </label>
+                    <input type = "hidden" name = "email" value = > 
+                </div>
+                <div class="modal-body form-horizontal"> 
+                    <!-- current password -->
+                    <div class = "row">
+                        <div class="form-group col-md-4">
                             <label for="current_password" class="control-label">Current Password</label>
-                            <div class="controls">
-                                <input type="password" name="password">
-                            </div>
+                            <input type="password" class="form-control input-account-pass" name="password">
                         </div>
-                        <div class="control-group">
-                            <label for="new_password" class="control-label">New Password</label>
-                            <div class="controls">
-                                <input type="password" name="new_password">
-                            </div>
+                    </div>
+                    <!-- new password -->
+                    <div class="row">
+                        <div class = "form-group col-md-4">
+                                <label for="new_password" class="control-label">New Password</label>
+                                <input type="password" class="input-account-pass form-control" name="new_password">
                         </div>
-                        <div class="control-group">
+                    </div>
+                    <!-- confirm password -->
+                    <div class = "row">
+                    <div class="form-group col-md-4">
                             <label for="confirm_password" class="control-label">Confirm Password</label>
-                            <div class="controls">
-                                <input type="password" name="confirm_password">
-                            </div>
-                        </div>
+                            <input type="password" class="input-account-pass form-control" name="confirm_password">
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Submit</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    </div>
-                </form>
+                </div>
+                <!-- modal footer -->
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
-        <!-- </form> -->
         </div>
-    </div> 
+    </form>
 
+    <!-- end of account-password div -->
+    </div> 
     </body>
 </html>

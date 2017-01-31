@@ -105,14 +105,16 @@ app.get('/profile', isLoggedIn, function (req,res) {
 });
 
 app.post('/profile', function () {
-	console.log('pls work');
-	return res.render('/content');
-	// return passport.authenticate('local-changepassword', {
- //        successRedirect : '/profile1', //TODO profile1 with changed password
- //        failureRedirect : '/profile', 
- //        failureFlash : true // allow flash messages
- //    });
-});
+	console.log('i kinda work');
+	return passport.authenticate('local-changepassword', {
+        successRedirect : '/content', //TODO profile1 with changed password
+        failureRedirect : '/', 
+        failureFlash : true // allow flash messages
+})});
+
+
+
+
 
 //============================CONTENT============================
 app.get('/content', isLoggedIn, function (req,res) {
