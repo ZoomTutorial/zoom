@@ -30,11 +30,68 @@ app.get('/signup', function (req,res) {
 });
 
 // process the signup form
-    app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect : '/send', // redirect to the secure profile section
-        failureRedirect : '/signup', // redirect back to the signup page if there is an error
-        failureFlash : true // allow flash messages
-    }));
+app.post('/signup', passport.authenticate('local-signup', {
+    successRedirect : '/send', // redirect to the secure profile section
+    failureRedirect : '/signup', // redirect back to the signup page if there is an error
+    failureFlash : true // allow flash messages
+}));
+
+
+//============================PROFILE============================
+//protected so you have to be logged in to visit
+//route middleware to verify
+app.get('/profile', isLoggedIn, function (req,res) {
+	res.render('profile.ejs', {
+		user : req.user, //get user our of sesh and pass to template
+		alertDiv: '',
+		message: req.flash ('changePasswordMessage')
+	});
+});
+
+app.post('/profile', function (req,res){
+	var changePassMessage = '';
+	var success = 1;
+	var alert = "";
+	if (!(req.body.newPassword === req.body.confirmPassword))  {
+		changePassMessage += '\n Password Confirmation doesn\'t match new Password';
+		success = 0;
+		alert = "alert-danger"; 
+	} 
+	var curPassword = req.body.password;
+	var newPassword = req.body.newPassword;
+	var curUser = req.user;
+	console.log("curPass " +curPassword+ " newPass "+newPassword+" user"+curUser);
+	req.login(curUser, function(err) {
+		console.log(arguments);
+		if (!curUser.validPassword(curPassword)) {
+			changePassMessage += '\n Oops! Wrong Password, idiot. ';
+			success = 0;
+			alert ="alert-danger";
+		}
+		if (err) {
+			changePassMessage += '\n'+ err;
+			success = 0;
+			alert = "alert-danger";
+		}
+		if (success == 1) {
+			changePassMessage = 'Yaaay! Successfully updated password';
+			alert = "alert-success";
+			curUser.local.password = curUser.generateHash(newPassword);
+			 curUser.save(function(err) {
+                        if (err)
+                            throw err;
+                    });			
+			console.log("new updated pass "+curUser.local.password);
+		}
+		//render profile page with flash message
+		res.render('profile.ejs', {
+			user: curUser,
+			alertDiv: alert, 
+			message: changePassMessage
+	})})
+});
+
+
 
 
 //===========================EMAIL VERIFICATION===========================
@@ -47,72 +104,37 @@ var smtpTransport = nodemailer.createTransport("SMTP",{
 		'pass':exports.auth.pass
 	}
  });
-
-//var host = '192.168.56.101:8080';
 var rand,link, mailOptions;
 var host = exports.host;
 
 app.get('/send',function(req,res){
     rand=Math.floor((Math.random() * 100) + 54);
 	link="http://"+req.get('host')+"/verify?id="+rand;
-	//test
-	console.log("host is: "+host);
-	console.log("auth is: "+ exports.auth);
 	mailOptions={
 		to : req.user.local.email, //is that working?
 		subject : "Please confirm your Email account",
 		html : "Hello,<br> Please Click on the link to verify your email.<br><a href="+link+">Click here to verify</a>"	
-	}
-	console.log(mailOptions);
+	}	
 	smtpTransport.sendMail(mailOptions, function(error, response){
-   	 if(error){
+   	if(error){
         console.log(error);
 		res.end("error");
-	 }else{
-        console.log("Message sent: " + response.message);
+	} else
 		res.end("sent");
-    	 }
-});
-});
-
-app.get('/verify',function(req,res){
-console.log(req.protocol+"://"+req.get('host'));
-console.log("http://"+host)
-if((req.protocol+"://"+req.get('host'))==("http://"+host)) {
-	console.log("Domain is matched. Information is from Authentic email");
-	if(req.query.id==rand) {
-		console.log("email is verified");
-		//res.end("<h1>Email "+mailOptions.to+" is been Successfully verified");
-		res.render('emailconfirm.ejs', {message: req.flash ('signupMessage')});
-	} else {
-		console.log("email is not verified");
-		res.end("<h1>Bad Request</h1>");
-	}
-} else {
-	res.end("<h1>Request is from unknown source");
-}
-});
-
-
-//============================PROFILE============================
-//protected so you have to be logged in to visit
-//route middleware to verify
-app.get('/profile', isLoggedIn, function (req,res) {
-	res.render('profile.ejs', {
-		user : req.user, //get user our of sesh and pass to template
-		message: req.flash ('changePasswordMessage')
 	});
 });
 
-app.post('/profile', function () {
-	console.log('i kinda work');
-	return passport.authenticate('local-changepassword', {
-        successRedirect : '/content', //TODO profile1 with changed password
-        failureRedirect : '/', 
-        failureFlash : true // allow flash messages
-})});
-
-
+app.get('/verify',function(req,res){
+if((req.protocol+"://"+req.get('host'))==("http://"+host)) {
+	console.log("Domain is matched. Information is from Authentic email");
+	if(req.query.id==rand) 		//res.end("<h1>Email "+mailOptions.to+" is been Successfully verified");
+		res.render('emailconfirm.ejs', {message: req.flash ('signupMessage')});
+	else 
+		res.end("<h1>Bad Request</h1>");
+	
+} else 
+	res.end("<h1>Request is from unknown source");
+});
 
 
 
@@ -142,6 +164,10 @@ app.get('/content', isLoggedIn, function (req,res) {
 // 	res.render('coursepass.ejs');//check if pass in var
 // });
 
+//============================ABOUT============================
+app.get('/about', function (req, res) {
+	res.render('about.ejs');
+});
 
 
 //============================LOGOUT=================================

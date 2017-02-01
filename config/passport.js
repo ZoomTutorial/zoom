@@ -50,7 +50,7 @@ module.exports = function (passport) {
                         // set the user's local credentials
                     newUser.local.email    = email;
                     newUser.local.password = newUser.generateHash(password);
-
+                    
                     // save the user
                     newUser.save(function(err) {
                         if (err)
@@ -62,81 +62,37 @@ module.exports = function (passport) {
     	})
     })) 
      
-      // =========================================================================
-        // LOCAL LOGIN =============================================================
-        // =========================================================================
-        // we are using named strategies since we have one for login and one for signup
-        // by default, if there was no name, it would just be called 'local'
+  // =========================================================================
+    // LOCAL LOGIN =============================================================
+    // =========================================================================
+    // we are using named strategies since we have one for login and one for signup
+    // by default, if there was no name, it would just be called 'local'
 
-        passport.use('local-login', new LocalStrategy({
-            // by default, local strategy uses username and password, we will override with email
-            usernameField : 'email',
-            passwordField : 'password',
-            passReqToCallback : true // allows us to pass back the entire request to the callback
-        },
+    passport.use('local-login', new LocalStrategy({
+        // by default, local strategy uses username and password, we will override with email
+        usernameField : 'email',
+        passwordField : 'password',
+        passReqToCallback : true // allows us to pass back the entire request to the callback
+    },
 
-        function(req, email, password, done) { // callback with email and password from our form
+    function(req, email, password, done) { // callback with email and password from our form
 
-            // find a user whose email is the same as the forms email
-            // we are checking to see if the user trying to login already exists
-            User.findOne({ 'local.email' :  email }, function(err, user) {
-                // if there are any errors, return the error before anything else
-                if (err)
-                    return done(err);
+        // find a user whose email is the same as the forms email
+        // we are checking to see if the user trying to login already exists
+        User.findOne({ 'local.email' :  email }, function(err, user) {
+            // if there are any errors, return the error before anything else
+            if (err) 
+                return done(err);
+            if (!user) 
+            // if no user is found, return the message
+                return done(null, false, req.flash('loginMessage', 'No user found.')); // req.flash is the way to set flashdata using connect-flash
+            // if the user is found but the password is wrong
+            if (!user.validPassword(password)) 
+                return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); // create the loginMessage and save it to session as flashdata
+            // all is well, return successful user
+            return done(null, user);
+        });
 
-                // if no user is found, return the message
-                if (!user)
-                    return done(null, false, req.flash('loginMessage', 'No user found.')); // req.flash is the way to set flashdata using connect-flash
-
-                // if the user is found but the password is wrong
-                if (!user.validPassword(password))
-                    return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); // create the loginMessage and save it to session as flashdata
-
-                // all is well, return successful user
-                return done(null, user);
-            });
-
-        }));
-
-
-      // =========================================================================
-      // LOCAL CHANGE PASSWORD =============================================================
-        // =========================================================================
-    passport.use('local-changepassword', new LocalStrategy({
-            // by default, local strategy uses username and password, we will override with email
-            usernameField : 'email',
-            passwordField : 'password',
-            passReqToCallback : true // allows us to pass back the entire request to the callback
-        },
-
-        function (done) {
-            done(null)
-        };
-        
-        // function () {
-        //     console.log(arguments);
-        // }));
-        // function(req,  password, done) { // callback with email and password from our form
-        //     console.log("hey change password in passor works");
-        //     // find a user whose email is the same as the forms email
-        //     // we are checking to see if the user trying to login already exists
-        //     User.findOne({ 'local.email' :  req.user.local.email }, function(err, user) {
-        //         // if there are any errors, return the error before anything else
-        //         if (err)
-        //             return done(err);
-
-        //         // if no user is found, return the message
-        //         if (!user)
-        //             return done(null, false, req.flash('changePasswordMessage', 'No user found.')); // req.flash is the way to set flashdata using connect-flash
-
-        //         // if the user is found but the password is wrong
-        //         if (!user.validPassword(password))
-        //             return done(null, false, req.flash('changePasswordMessage', 'Oops! Wrong password.')); // create the loginMessage and save it to session as flashdata
-
-        //         // all is well, return successful user
-        //         return done(null, user);
-        //     });
-
-        // }));
+    }));
 };
 
