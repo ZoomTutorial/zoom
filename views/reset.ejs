@@ -1,8 +1,8 @@
-<!-- views/forgotpass.ejs -->
+<!-- views/reset.ejs -->
 <!doctype html>
 <html>
 <head>
-    <title>Forgot Password</title>
+    <title>Reset Password</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
     <link rel = "stylesheet" href = "css/stylesheets.css">
@@ -12,18 +12,20 @@
     <script src="https://use.fontawesome.com/f20b095bb4.js"></script>
 </head>
 <body id = "bodyForgot">
+	 <!-- show any messages that come back with authentication -->
+    
 	<div class="container">
 		<div class="col-sm-6 col-sm-offset-3">
-			<h1><span class="glyphicon glyphicon-lock"></span> Forgot passsword?</h1>	
-			<form action="/forgotpass" method="post">
-				<label for = "emailForgot"> Email address: </label>
+			<h1><span class="glyphicon glyphicon-lock"></span> Reset passsword</h1>	
+			<form action="/reset" method="post">
+				<label for = "passReset"> Set password: </label>
 				<div class = "form-group input-group">
 					<span class = "input-group-addon">
-						@ 
-					</span>
-					<input type = "email" class = "form-control" aria-describedby="emailInfo" id = "emailForgot" name = "email">
+						<i class="glyphicon glyphicon-lock">
+            			</i> 
+            		</span>
+					<input type = "password" class = "form-control" aria-describedby="passInfo" id = "emailForgot" name = "password">
 				</div>
-				<small id = "emailInfo" class="form-text text-muted">Input your email address, and we will send you an email to reset your password</small> 
 				<p><button type="submit" id = "submitForgot" class="btn btn-warning btn-lg">Send code</button></p>
 			</form>
 		</div>

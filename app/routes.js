@@ -1,4 +1,4 @@
-module.exports = function (app,passport,async,crypto, nodemailer) {
+module.exports = function (app,passport,async,crypto,  nodemailer) {
 
 
 //============================HOME PAGE============================
@@ -60,7 +60,6 @@ app.post('/profile', function (req,res){
 	var curPassword = req.body.password;
 	var newPassword = req.body.newPassword;
 	var curUser = req.user;
-	console.log("curPass " +curPassword+ " newPass "+newPassword+" user"+curUser);
 	req.login(curUser, function(err) {
 		console.log(arguments);
 		if (!curUser.validPassword(curPassword)) {
@@ -80,7 +79,7 @@ app.post('/profile', function (req,res){
 			curUser.save(function(err) {
                 if (err)
                     throw err;
-                    });			
+            });			
 		}
 		//render profile page with flash message
 		res.render('profile.ejs', {
@@ -93,10 +92,11 @@ app.post('/profile', function (req,res){
 
 //============================FORGOT PASSWORD============================
 app.get('/forgotpass', function (req,res) {
-	res.render('forgotpass.ejs');
+	res.render('forgotpass.ejs', {message:req.flash('info'),message: req.flash('error')});
 })
 
-var User = require ('../app/models/user')
+var User = require ('../app/models/user');
+var token;
 //TODO what's next?
 app.post('/forgotpass', function (req,res, next) {
 	async.waterfall ([
@@ -104,7 +104,7 @@ app.post('/forgotpass', function (req,res, next) {
 		function (done) {
 			//buf is buffer containing generated buf
 			crypto.randomBytes(20, function(err, buf) {
-				var token = buf.toString('hex');
+				token = buf.toString('hex');
 				done (err, token);
 			})
 		},
@@ -125,23 +125,55 @@ app.post('/forgotpass', function (req,res, next) {
 		},
 		//send email with token
 		function(token,user,done) {
+			link="http://"+req.get('host')+"/reset?token="+token;
 			var mailOptions = {
 				to: user.local.email,
 				subject: "Reset Password",
-				html: 'Hello, <br> Follow the link to reset your password. \n\n' +
-				'http://' + req.headers.host + '/reset/' + token + '\n\n' +
+				html: 'Hello, <br> Follow the link to reset your password. <br>' +
+				'<a href =' + link +'>'+'Click here to reset password. </a> <br>' +
 				'If you did not request this, please ignore this email and your password will remain unchanged.'
 			};
 			smtpTransport.sendMail(mailOptions, function(error,response) {
-				req.flash('info', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
-        		done(error, done);
+				req.flash( 'info','An e-mail has been sent to ' + user.email + ' with further instructions.');
+        		done(error, 'done');
 			});
 		}
-		], function (err) {
-			if(err) return next(err);
-			res.redirect('/forgotpass');
-		});
+	], function (err) {
+		if(err) return next(err);
+		res.redirect('/forgotpass');
 	});
+});
+
+
+app.get('/reset', function (req,res) {
+	if((req.protocol+"://"+req.get('host'))==("http://"+host)) {
+		if(req.query.token==token) 		//res.end("<h1>Email "+mailOptions.to+" is been Successfully verified");
+			res.render('reset.ejs',{'token':token});
+		else 
+			res.end("<h1>Bad Request</h1>");
+	} else {
+		res.end ("<h1>Request from unknown source </h1>");
+	} 
+})
+
+
+app.post('/reset', function (req,res) {
+	User.findOne({'local.resetPasswordToken':req.query.token}, function(err,user){
+		if (!user) {
+			res.end("No user found");
+		}
+		if (err)
+			return err;
+		user.local.password = user.generateHash(req.body.password);
+		user.save(function(err) {
+	        if (err)
+	            throw err;
+	        else
+	        	res.redirect('/content');
+   		});
+	});
+	console.log(arguments);
+});
 
 //===========================EMAIL VERIFICATION===========================
 //send email to input email
@@ -160,7 +192,7 @@ app.get('/send',function(req,res){
     rand=Math.floor((Math.random() * 100) + 54);
 	link="http://"+req.get('host')+"/verify?id="+rand;
 	mailOptions={
-		to : req.user.local.email, //is that working?
+		to : req.user.local.email, 
 		subject : "Please confirm your Email account",
 		html : "Hello,<br> Please Click on the link to verify your email.<br><a href="+link+">Click here to verify</a>"	
 	}	
@@ -185,6 +217,59 @@ if((req.protocol+"://"+req.get('host'))==("http://"+host)) {
 	res.end("<h1>Request is from unknown source");
 });
 
+
+
+//============================FLASH MESSAGES============================
+ 
+app.use(require('express-flash-notification')(app, {
+    view_name: 		'elements/flash',
+    beforeSingleRender: function(notification, callback)
+    {
+        if (notification.type)
+        {
+            switch(notification.type)
+            {
+                case 'error':
+                    notification.alert_class = 'alert-danger'
+                    notification.icon_class = 'fa-times-circle'
+                break;
+                case 'alert':
+                    notification.alert_class = 'alert-warning'
+                    notification.icon_class = 'fa-times-circle'
+                break;
+                case 'info':
+                    notification.alert_class = 'alert-info'
+                    notification.icon_class = 'fa-times-circle'
+                break;
+                case 'success':
+                    notification.alert_class = 'alert-success'
+                    notification.icon_class = 'fa-check'
+                break;
+                case 'ok':
+                    notification.alert_class = 'alert-primary'
+                    notification.icon_class = 'fa-check'
+                break;
+            }
+        }
+        callback(null, notification)
+    },
+    afterAllRender: function(htmlFragments, callback)
+    {
+        // Naive JS is appened, waits a while expecting for the DOM to finish loading, 
+        // The timeout can be removed if jOuery is loaded before this is called, or if you're using vanilla js. 
+        htmlFragments.push([
+            '<script type="text/javascript">',
+            '	var timer = setInterval(function(){',
+            '      if (window.jOuery){',
+            '            clearInterval(timer)',
+            '            $(".alert.flash").slideDown().find(".close").on("click", function(){$(this).parent().slideUp()})',
+            '      }',
+            '	}, 200)',
+            '</script>',
+        ].join(''))
+        callback(null, htmlFragments.join(''))
+    },
+}))
 
 
 //============================CONTENT============================
