@@ -18,8 +18,9 @@ var configDB = require('./config/database.js');
 // configuration ===============================================================
 mongoose.connect(configDB.url); // connect to our database
 var db = mongoose.connection;
-//email confirmation
-
+//forgot pass
+var crypto = require ('crypto');
+var async = require ('async');
 
 require('./config/passport')(passport); // pass passport for configuration
 
@@ -38,7 +39,7 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 
 // routes ======================================================================
 app.use(express.static('static'));
-require('./app/routes.js')(app, passport, nodemailer); // load our routes and pass in our app and fully configured passport
+require('./app/routes.js')(app, passport,async, crypto,  nodemailer); // load our routes and pass in our app and fully configured passport
 
 // launch ======================================================================
 app.listen(port);

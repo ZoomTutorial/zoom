@@ -1,0 +1,31 @@
+<!-- views/login.ejs -->
+<!doctype html>
+<html>
+<head>
+    <title>Email Confirmed</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+    <link rel = "stylesheet" href = "css/stylesheets.css">
+    <style>
+        body        { padding-top:80px; }
+    </style>
+    <script src="https://use.fontawesome.com/f20b095bb4.js"></script>
+</head>
+<body id = "bodyForgot">
+	<div class="container">
+		<div class="col-sm-6 col-sm-offset-3">
+			<h1><span class="glyphicon glyphicon-lock"></span> Forgot passsword?</h1>	
+			<form action="/forgotpass" method="post">
+				<label for = "emailForgot"> Email address: </label>
+				<div class = "form-group input-group">
+					<span class = "input-group-addon">
+						@ 
+					</span>
+					<input type = "email" class = "form-control" aria-describedby="emailInfo" id = "emailForgot" name = "email">
+				</div>
+				<small id = "emailInfo" class="form-text text-muted">Input your email address, and we will send you an email to reset your password</small> 
+				<p><button type="submit" id = "submitForgot" class="btn btn-warning btn-lg">Send code</button></p>
+			</form>
+		</div>
+	</div>
+</body>

@@ -1,4 +1,4 @@
-module.exports = function (app,passport, nodemailer) {
+module.exports = function (app,passport,async,crypto, nodemailer) {
 
 
 //============================HOME PAGE============================
@@ -77,11 +77,10 @@ app.post('/profile', function (req,res){
 			changePassMessage = 'Yaaay! Successfully updated password';
 			alert = "alert-success";
 			curUser.local.password = curUser.generateHash(newPassword);
-			 curUser.save(function(err) {
-                        if (err)
-                            throw err;
+			curUser.save(function(err) {
+                if (err)
+                    throw err;
                     });			
-			console.log("new updated pass "+curUser.local.password);
 		}
 		//render profile page with flash message
 		res.render('profile.ejs', {
@@ -92,7 +91,57 @@ app.post('/profile', function (req,res){
 });
 
 
+//============================FORGOT PASSWORD============================
+app.get('/forgotpass', function (req,res) {
+	res.render('forgotpass.ejs');
+})
 
+var User = require ('../app/models/user')
+//TODO what's next?
+app.post('/forgotpass', function (req,res, next) {
+	async.waterfall ([
+		//generate random token for password reset
+		function (done) {
+			//buf is buffer containing generated buf
+			crypto.randomBytes(20, function(err, buf) {
+				var token = buf.toString('hex');
+				done (err, token);
+			})
+		},
+		//verify if email exists
+		function (token, done) {
+			User.findOne({'local.email':req.body.email}, function (err, user) {
+				if (!user) {
+					req.flash('error', 'No account with that email address exists');
+					return res.redirect('/forgotpass');
+				}
+				user.local.resetPasswordToken = token;
+				user.local.resetPasswordExpires = Date.now() + 3600000;//1 hour
+
+				user.save(function(err) {
+					done (err,token, user); //save user with token
+				});
+			});
+		},
+		//send email with token
+		function(token,user,done) {
+			var mailOptions = {
+				to: user.local.email,
+				subject: "Reset Password",
+				html: 'Hello, <br> Follow the link to reset your password. \n\n' +
+				'http://' + req.headers.host + '/reset/' + token + '\n\n' +
+				'If you did not request this, please ignore this email and your password will remain unchanged.'
+			};
+			smtpTransport.sendMail(mailOptions, function(error,response) {
+				req.flash('info', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
+        		done(error, done);
+			});
+		}
+		], function (err) {
+			if(err) return next(err);
+			res.redirect('/forgotpass');
+		});
+	});
 
 //===========================EMAIL VERIFICATION===========================
 //send email to input email
