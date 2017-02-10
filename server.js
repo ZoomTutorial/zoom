@@ -7,12 +7,15 @@ var mongoose = require('mongoose');
 
 var nodemailer = require('nodemailer');
 var passport = require('passport');
-var flash    = require('connect-flash');
+//var flash    = require('connect-flash');
+var flash = require ('express-flash');
+var session = require('express-session');
 
 var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser   = require('body-parser');
 var session      = require('express-session');
+var sessionStore = new session.MemoryStore;
 
 var configDB = require('./config/database.js');
 // configuration ===============================================================
@@ -32,7 +35,12 @@ app.use(bodyParser()); // get information from html forms
 app.set('view engine', 'ejs'); // set up ejs for templating
 
 // required for passport
-app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secret
+app.use(session({ 
+	store: sessionStore,
+	saveUnitialized: 'true',
+	resave: 'true',
+	secret: 'secret' 
+})); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session

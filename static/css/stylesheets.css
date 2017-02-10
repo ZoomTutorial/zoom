@@ -33,7 +33,7 @@
 
 .nav-glyph {
 	min-width: 80%;
-	eight: 80%;
+	height: 80%;
 }
 
 /*==========================CONTENT==========================*/
@@ -45,7 +45,7 @@
 	margin:0px;
 }
 
-.content.container {
+.content-container {
 	padding:0px;
 	margin: 0px;
 }
@@ -77,12 +77,8 @@
 }
 
 .content-link{
-	font-size: 18px;
+	font-size: 16px;
 	color: #D28EE4;
-}
-
-.list-group-header{
-	padding: 10x;
 }
 
 /*on collapse change color of header*/
@@ -91,6 +87,17 @@
 	color: #1BD7B8;
 }
 
+#content-header4 {
+	color: red;
+}
+.content-header{
+	padding:1%;
+	margin:0px;
+}
+
+#content-refer {
+	color:red;
+}
 /*==========================LOGIN==========================*/
 .login {
 /*	background-image: url('../images/login.jpg');

@@ -257,7 +257,14 @@ app.get('/logout', function (req,res) {
 	res.redirect('/');
 });
 
-
+//============================FLASH=================================
+// Custom flash middleware -- from Ethan Brown's book, 'Web Development with Node & Express'
+app.use(function(req, res, next){
+    // if there's a flash message in the session request, make it available in the response, then delete it
+    res.locals.sessionFlash = req.session.sessionFlash;
+    delete req.session.sessionFlash;
+    next();
+});
 
 //route middleware to make sure user is logged in
 function isLoggedIn (req,res,next) {

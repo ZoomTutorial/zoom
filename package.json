@@ -20,6 +20,7 @@
     "express-session": "~1.0.0",     
     "crypto" : "0.0.3",
     "async": "2.1.4",
-    "express-flash-notification": "0.3.1"
+    "express-flash": "0.0.2",
+    "express-session": "1.15.0"
     }
 }
