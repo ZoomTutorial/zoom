@@ -49,11 +49,11 @@ app.get('/profile', isLoggedIn, function (req,res) {
 });
 
 app.post('/profile', function (req,res){
-	var changePassMessage = '';
 	var success = 1;
 	var alert = "";
+	var changePassMessage = '';
 	if (!(req.body.newPassword === req.body.confirmPassword))  {
-		changePassMessage += '\n Password Confirmation doesn\'t match new Password';
+		changePassMessage = ' Password Confirmation doesn\'t match new Password';
 		success = 0;
 		alert = "alert-danger"; 
 	} 
@@ -63,12 +63,12 @@ app.post('/profile', function (req,res){
 	req.login(curUser, function(err) {
 		console.log(arguments);
 		if (!curUser.validPassword(curPassword)) {
-			changePassMessage += '\n Oops! Wrong Password, idiot. ';
+			changePassMessage = ' Oops! Wrong Password. ';
 			success = 0;
 			alert ="alert-danger";
 		}
 		if (err) {
-			changePassMessage += '\n'+ err;
+			changePassMessage = ''+ err;
 			success = 0;
 			alert = "alert-danger";
 		}
@@ -82,17 +82,20 @@ app.post('/profile', function (req,res){
             });			
 		}
 		//render profile page with flash message
+		req.flash('changePassMessage', changePassMessage);
 		res.render('profile.ejs', {
 			user: curUser,
 			alertDiv: alert, 
-			message: changePassMessage
+			message: req.flash('changePassMessage') //CHECK
 	})})
 });
 
 
 //============================FORGOT PASSWORD============================
 app.get('/forgotpass', function (req,res) {
-	res.render('forgotpass.ejs', {message:req.flash('info'),message: req.flash('error')});
+	res.render('forgotPassword/forgotpass.ejs', {
+		alertType: '',
+		message:req.flash('forgotPassMessage')});
 })
 
 var User = require ('../app/models/user');
@@ -112,8 +115,11 @@ app.post('/forgotpass', function (req,res, next) {
 		function (token, done) {
 			User.findOne({'local.email':req.body.email}, function (err, user) {
 				if (!user) {
-					req.flash('error', 'No account with that email address exists');
-					return res.redirect('/forgotpass');
+					req.flash('forgotPassMessage','No account with that email address exists');
+					return res.render('forgotPassword/forgotpass.ejs', {
+						message: req.flash('forgotPassMessage'),
+						alertType: 'alert-danger'
+					})				
 				}
 				user.local.resetPasswordToken = token;
 				user.local.resetPasswordExpires = Date.now() + 3600000;//1 hour
@@ -126,6 +132,7 @@ app.post('/forgotpass', function (req,res, next) {
 		//send email with token
 		function(token,user,done) {
 			link="http://"+req.get('host')+"/reset?token="+token;
+			console.log(link);
 			var mailOptions = {
 				to: user.local.email,
 				subject: "Reset Password",
@@ -134,21 +141,26 @@ app.post('/forgotpass', function (req,res, next) {
 				'If you did not request this, please ignore this email and your password will remain unchanged.'
 			};
 			smtpTransport.sendMail(mailOptions, function(error,response) {
-				req.flash( 'info','An e-mail has been sent to ' + user.email + ' with further instructions.');
+				req.flash ('forgotPassMessage','An e-mail has been sent to ' + user.email + ' with further instructions.');
         		done(error, 'done');
 			});
 		}
 	], function (err) {
 		if(err) return next(err);
-		res.redirect('/forgotpass');
+		res.render('forgotPassword/forgotpass.ejs',{
+			message: req.flash('forgotPassMessage'),
+			alertType: 'alert-success'
+		});
 	});
 });
 
 
 app.get('/reset', function (req,res) {
+	console.log(req.protocol+"://"+req.get('host'));
+	console.log("http://"+host);
 	if((req.protocol+"://"+req.get('host'))==("http://"+host)) {
 		if(req.query.token==token) 		//res.end("<h1>Email "+mailOptions.to+" is been Successfully verified");
-			res.render('reset.ejs',{'token':token});
+			res.render('forgotPassword/reset.ejs',{'token':token});
 		else 
 			res.end("<h1>Bad Request</h1>");
 	} else {

@@ -13,6 +13,9 @@
 </head>
 <body id = "bodyForgot">
 	<div class="container">
+		<% if (message.length) { %>
+        <div class="alert <%=alertType%>"><%= message %></div>
+    	<% } %>
 		<div class="col-sm-6 col-sm-offset-3">
 			<h1><span class="glyphicon glyphicon-lock"></span> Forgot passsword?</h1>	
 			<form action="/forgotpass" method="post">

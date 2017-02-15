@@ -8,8 +8,7 @@ var mongoose = require('mongoose');
 var nodemailer = require('nodemailer');
 var passport = require('passport');
 //var flash    = require('connect-flash');
-var flash = require ('express-flash');
-var session = require('express-session');
+var flash = require ('connect-flash');
 
 var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -35,10 +34,7 @@ app.use(bodyParser()); // get information from html forms
 app.set('view engine', 'ejs'); // set up ejs for templating
 
 // required for passport
-app.use(session({ 
-	store: sessionStore,
-	saveUnitialized: 'true',
-	resave: 'true',
+app.use(session({
 	secret: 'secret' 
 })); // session secret
 app.use(passport.initialize());
