@@ -132,7 +132,6 @@ app.post('/forgotpass', function (req,res, next) {
 		//send email with token
 		function(token,user,done) {
 			link="http://"+req.get('host')+"/reset?token="+token;
-			console.log(link);
 			var mailOptions = {
 				to: user.local.email,
 				subject: "Reset Password",
@@ -156,15 +155,22 @@ app.post('/forgotpass', function (req,res, next) {
 
 
 app.get('/reset', function (req,res) {
-	console.log(req.protocol+"://"+req.get('host'));
-	console.log("http://"+host);
-	if((req.protocol+"://"+req.get('host'))==("http://"+host)) {
+	if((req.protocol+"://"+req.get('host'))==("http://"+host) && req.query.token !== undefined && token !== token) {
 		if(req.query.token==token) 		//res.end("<h1>Email "+mailOptions.to+" is been Successfully verified");
 			res.render('forgotPassword/reset.ejs',{'token':token});
-		else 
-			res.end("<h1>Bad Request</h1>");
+		else {
+			req.flash ('msg', "Bad Request");
+			res.render ('flashmsg.ejs', {
+			color: '#C73C3C',
+			message: req.flash ('msg')
+			})
+		}
 	} else {
-		res.end ("<h1>Request from unknown source </h1>");
+		req.flash('msg',"Request from unknown source");
+		res.render ('flashmsg.ejs', {
+			color: '#C73C3C',
+			message: req.flash ('msg')
+		})
 	} 
 })
 
@@ -172,7 +178,7 @@ app.get('/reset', function (req,res) {
 app.post('/reset', function (req,res) {
 	User.findOne({'local.resetPasswordToken':req.query.token}, function(err,user){
 		if (!user) {
-			res.end("No user found");
+			res.render('forgotPassword/reset.ejs', {message: req.flash("No user found")});
 		}
 		if (err)
 			return err;
@@ -184,7 +190,6 @@ app.post('/reset', function (req,res) {
 	        	res.redirect('/content');
    		});
 	});
-	console.log(arguments);
 });
 
 //===========================EMAIL VERIFICATION===========================
@@ -210,10 +215,9 @@ app.get('/send',function(req,res){
 	}	
 	smtpTransport.sendMail(mailOptions, function(error, response){
    	if(error){
-        console.log(error);
-		res.end("error");
+		res.render('signup.ejs', {message: req.flash ('signupMessage', 'Error. Try again')});
 	} else
-		res.end("sent");
+		res.end('bla');
 	});
 });
 
@@ -223,10 +227,10 @@ if((req.protocol+"://"+req.get('host'))==("http://"+host)) {
 	if(req.query.id==rand) 		//res.end("<h1>Email "+mailOptions.to+" is been Successfully verified");
 		res.render('emailconfirm.ejs', {message: req.flash ('signupMessage')});
 	else 
-		res.end("<h1>Bad Request</h1>");
+		res.render('emailconfirm.ejs', {message: req.flash('signupMessage', "Bad Request")});
 	
 } else 
-	res.end("<h1>Request is from unknown source");
+	res.render('emailconfirm.ejs', {message: req.flash('signupMessage', "Request is from unknown source")});
 });
 
 
@@ -235,8 +239,6 @@ if((req.protocol+"://"+req.get('host'))==("http://"+host)) {
 app.get('/content', isLoggedIn, function (req,res) {
 	res.render('content.ejs'); //check if need to send variables
 });
-
-
 
 // //============================QUIZZ============================
 // app.get('/quizz', function (req,res) {
