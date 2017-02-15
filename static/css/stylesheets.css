@@ -1,8 +1,4 @@
 /*==========================INDEX==========================*/
-.navbar {
-	font-size: 15px;
-	
-}
 
 .lead {
 	font-size: 18px;
@@ -27,13 +23,6 @@
 
 #index-container {
 	padding: 5%;
-}
-
-/*==========================EMAil CONFIRM==========================*/
-
-.nav-glyph {
-	min-width: 80%;
-	height: 80%;
 }
 
 /*==========================CONTENT==========================*/
@@ -139,6 +128,9 @@
 /*==========================FOR COMPONENTS==========================*/
 .btn {
 	border-radius:2px;
+}
+.nav-elem {
+	font-size:18px;
 }
 
 input, button {
