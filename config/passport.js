@@ -39,11 +39,11 @@ module.exports = function (passport) {
     		//see if user trying to login already exists
     		User.findOne({'local.email':email}, function (err,user) {
     			if(err) 
-    				return done (err);
+    				return done (err, req.flash('signupMessage','Error. Try again'));
 
     			//check if there's already user with this email
     			if (user) {
-    				return done(null,false,req.flash('signupMessage','email is already taken'));
+    				return done(null,false,req.flash('signupMessage','Email is already taken'));
     			} else {
     				//if no user with email create user
     				var newUser = new User();

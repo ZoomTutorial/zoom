@@ -44,7 +44,7 @@ app.get('/profile', isLoggedIn, function (req,res) {
 	res.render('profile.ejs', {
 		user : req.user, //get user our of sesh and pass to template
 		alertDiv: '',
-		message: req.flash ('changePasswordMessage')
+		message: req.flash ('changePassMessage')
 	});
 });
 
@@ -83,11 +83,13 @@ app.post('/profile', function (req,res){
 		}
 		//render profile page with flash message
 		req.flash('changePassMessage', changePassMessage);
+		alertDiv  = alert;
 		res.render('profile.ejs', {
 			user: curUser,
 			alertDiv: alert, 
 			message: req.flash('changePassMessage') //CHECK
-	})})
+	})
+	})
 });
 
 
@@ -123,7 +125,6 @@ app.post('/forgotpass', function (req,res, next) {
 				}
 				user.local.resetPasswordToken = token;
 				user.local.resetPasswordExpires = Date.now() + 3600000;//1 hour
-
 				user.save(function(err) {
 					done (err,token, user); //save user with token
 				});
@@ -140,7 +141,7 @@ app.post('/forgotpass', function (req,res, next) {
 				'If you did not request this, please ignore this email and your password will remain unchanged.'
 			};
 			smtpTransport.sendMail(mailOptions, function(error,response) {
-				req.flash ('forgotPassMessage','An e-mail has been sent to ' + user.email + ' with further instructions.');
+				req.flash ('forgotPassMessage','An e-mail has been sent to ' + user.local.email + ' with further instructions.');
         		done(error, 'done');
 			});
 		}
@@ -155,7 +156,10 @@ app.post('/forgotpass', function (req,res, next) {
 
 
 app.get('/reset', function (req,res) {
-	if((req.protocol+"://"+req.get('host'))==("http://"+host) && req.query.token !== undefined && token !== token) {
+	console.log(req.protocol+"://"+req.get('host'));
+	console.log("http://"+host);
+	console.log(req.query.token+" " + token);
+	if((req.protocol+"://"+req.get('host'))==("http://"+host) && req.query.token !== undefined) {
 		if(req.query.token==token) 		//res.end("<h1>Email "+mailOptions.to+" is been Successfully verified");
 			res.render('forgotPassword/reset.ejs',{'token':token});
 		else {
@@ -216,8 +220,13 @@ app.get('/send',function(req,res){
 	smtpTransport.sendMail(mailOptions, function(error, response){
    	if(error){
 		res.render('signup.ejs', {message: req.flash ('signupMessage', 'Error. Try again')});
-	} else
-		res.end('bla');
+	} else {
+		req.flash('msg', 'Email sent to '+req.user.local.email+ " for confirmation");
+		res.render('flashmsg.ejs', {
+			color: '#26B275',
+			message: req.flash('msg')
+		});
+	}
 	});
 });
 
@@ -272,14 +281,6 @@ app.get('/logout', function (req,res) {
 });
 
 //============================FLASH=================================
-// Custom flash middleware -- from Ethan Brown's book, 'Web Development with Node & Express'
-app.use(function(req, res, next){
-    // if there's a flash message in the session request, make it available in the response, then delete it
-    res.locals.sessionFlash = req.session.sessionFlash;
-    delete req.session.sessionFlash;
-    next();
-});
-
 //route middleware to make sure user is logged in
 function isLoggedIn (req,res,next) {
 	//if user auntheticated in sesh, carry on
