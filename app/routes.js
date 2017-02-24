@@ -88,7 +88,7 @@ app.post('/profile', function (req,res){
 			user: curUser,
 			alertDiv: alert, 
 			message: req.flash('changePassMessage') //CHECK
-	})
+		})
 	})
 });
 
@@ -243,24 +243,15 @@ if((req.protocol+"://"+req.get('host'))==("http://"+host)) {
 });
 
 
-
 //============================CONTENT============================
 app.get('/content', isLoggedIn, function (req,res) {
 	res.render('content.ejs'); //check if need to send variables
 });
 
-// //============================QUIZZ============================
-// app.get('/quizz', function (req,res) {
-// 	res.render('quizz.ejs'); //check if pass in variables
-// });
-
-
-
-// //============================PROGRESS============================
-// app.get('/progress', isLoggedIn, function (req,res) {
-// 	res.render ('progress.ejs'); //check if pass in var
-// });
-
+app.post('/content', function(req,res) {
+	console.log("lala");
+})
+//============================CONTENT SECTION============================
 
 
 // //============================COURSE COMPLETE============================

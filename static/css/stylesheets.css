@@ -49,7 +49,8 @@
 	color:#71ACBA;
 }
 
-#content-div1, #content-div2, #content-div3, #content-div4, #content-div5, #content-div6, #content-div7, #content-div8, #content-div9, #content-div10 {
+/*#content-div1, #content-div2, #content-div3, #content-div4, #content-div5, #content-div6, #content-div7, #content-div8, #content-div9, #content-div10 {*/
+.content-div {
 	width: 100%;
 	height:30%;
 	text-align: center;
@@ -91,6 +92,13 @@
 .content-menu-dropdown {
 	margin:5px;
 }
+
+.buttonlink, .buttonlink:active {
+    background:none!important;
+    border:none; 
+    padding:0!important;
+    outline-style: none;
+ }
 /*==========================LOGIN==========================*/
 .login {
 /*	background-image: url('../images/login.jpg');
