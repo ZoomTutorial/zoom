@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%include partials/head.ejs%>  
+</head>
+
+<body id = "content-body">
+
+    <!-- Navigation -->
+    <nav class="content navbar navbar-inverse navbar-fixed-top" role="navigation"><%include partials/navbar/navbar.ejs%>
+    </nav>  
+    
+    <!-- Full Width Image Header -->
+    <header class = "content header-image">
+            <div class="headline">
+            <div class="container">
+
+            </div>
+        </div>
+    </header>
+    <div class = "content-container">
+    <!-- pass in a section variable from routes to include a right section -->
+        <%if (section.length > 0) {%>
+           <%include(section)%> 
+        <% } %>          
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>Copyright &copy; Your Website 2014</p>
+            </div>
+        </div>
+    </footer>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- TODO should I put that in separate script? -->
+    <script src = "js/func.js">
+    </script>
+
+</body>
+
+</html>
