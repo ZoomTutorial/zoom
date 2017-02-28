@@ -17,11 +17,11 @@ app.get('/login', function (req,res) {
 
 
  // process the login form
-    app.post('/login', passport.authenticate('local-login', {
-        successRedirect : '/content', // redirect to the secure profile section
-        failureRedirect : '/login', // redirect back to the signup page if there is an error
-        failureFlash : true // allow flash messages
-    }));
+app.post('/login', passport.authenticate('local-login', {
+    successRedirect : '/content', // redirect to the secure profile section
+    failureRedirect : '/login', // redirect back to the signup page if there is an error
+    failureFlash : true // allow flash messages
+}));
     
 //============================SIGN UP============================
 app.get('/signup', function (req,res) {
@@ -156,9 +156,9 @@ app.post('/forgotpass', function (req,res, next) {
 
 
 app.get('/reset', function (req,res) {
-	console.log(req.protocol+"://"+req.get('host'));
-	console.log("http://"+host);
-	console.log(req.query.token+" " + token);
+	// console.log(req.protocol+"://"+req.get('host'));
+	// console.log("http://"+host);
+	// console.log(req.query.token+" " + token);
 	if((req.protocol+"://"+req.get('host'))==("http://"+host) && req.query.token !== undefined) {
 		if(req.query.token==token) 		//res.end("<h1>Email "+mailOptions.to+" is been Successfully verified");
 			res.render('forgotPassword/reset.ejs',{'token':token});
@@ -248,12 +248,22 @@ app.get('/content', isLoggedIn, function (req,res) {
 	res.render('content.ejs'); //check if need to send variables
 });
 
-app.post('/content', function(req,res) {
-	console.log("lala");
-})
 //============================CONTENT SECTION============================
+//reg exp to recognize id in url
+app.get('/contentsection/:id([0-9]*)/', function(req,res) {
+	var secPath = 'partials/content/content_text'+req.params.id;//define path to content text
+	console.log('secPath '+secPath);
+	res.render ('contentsection.ejs', {
+		section: secPath,
+	});
+});
 
-
+var ejs = require('ejs');
+var myFileLoad = function (filePath) {
+  return 'myFileLoad: ' + fs.readFileSync(filePath);
+};
+ 
+ejs.fileLoader = myFileLoad;
 // //============================COURSE COMPLETE============================
 // app.get('/coursepass', isLoggedIn, function (req,res) {
 // 	res.render('coursepass.ejs');//check if pass in var
