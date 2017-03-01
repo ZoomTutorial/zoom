@@ -99,6 +99,11 @@
     padding:0!important;
     outline-style: none;
  }
+ /*==========================CONTENT-SECTION==========================*/
+ .contentsection-container {
+ 	margin: 3%;
+ }
+
 /*==========================LOGIN==========================*/
 .login {
 /*	background-image: url('../images/login.jpg');

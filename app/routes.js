@@ -249,12 +249,38 @@ app.get('/content', isLoggedIn, function (req,res) {
 
 //============================CONTENT SECTION============================
 //reg exp to recognize id in url
-app.get('/contentsection/:id([0-9]*)/', function(req,res) {
-	console.log(req.params.id);
+var sec_Num;
+var all_Num = 8; //number of sections
+app.get('/contentsection/:id([0-9]*)/', isLoggedIn, function(req,res) {
+	initDisable();
+	sec_Num = req.params.id;
+	disableArray[0] = "active";
 	res.render ('contentsection.ejs',{
-		sectionNum: req.params.id,
+		sectionNum: sec_Num,
+		disable: disableArray,
 	});
 });
+
+//array of booleans to disable sections in navbar
+var disableArray = {};
+
+function initDisable () {
+	for (var i = 0; i < 8; i++) {
+		disableArray[i] = "disabled";
+	}
+}
+
+//TODO disable pages, that user doesn't have access to by passing a variable?
+//reset active-disable nav links
+app.post('/contentsection', isLoggedIn, disableNav, function (req.res) {
+
+})
+
+
+function disableNav () {
+	sec_Num++
+	disableArray[sec_Num] = "active";//set new section to active
+}
 // //============================COURSE COMPLETE============================
 // app.get('/coursepass', isLoggedIn, function (req,res) {
 // 	res.render('coursepass.ejs');//check if pass in var

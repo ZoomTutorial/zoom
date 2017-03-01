@@ -31,7 +31,7 @@
             </div>
         </div>
     </header>
-    <div>
+    <div class = contentsection-container>
     <!-- pass in a section variable from routes to include a right section -->
     <% if (sectionNum == 1) {%>
         <% include partials/content/content_text1.ejs%>
@@ -57,7 +57,7 @@
     <% if (sectionNum == 10) {%>
         <% include partials/content/content_text10.ejs%>
     <% }%>
-    </div>
+
     <!-- Footer -->
     <footer>
         <div class="row">
@@ -69,6 +69,16 @@
 
     </div>
     <!-- /.container -->
+
+    </div>
+    
+    <!-- jQuery -->
+    <script src="../../js/jquery.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../../js/bootstrap.min.js"></script>
+    <!-- TODO should I put that in separate script? -->
+    <script src = "../../js/func.js">
+    </script>
 
 </body>
 
