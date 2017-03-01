@@ -1,5 +1,4 @@
-module.exports = function (app,passport,async,crypto, nodemailer) {
-
+module.exports = function (app,passport,async,crypto, nodemailer, fs) {
 
 //============================HOME PAGE============================
 app.get('/', function (req,res) {
@@ -251,19 +250,11 @@ app.get('/content', isLoggedIn, function (req,res) {
 //============================CONTENT SECTION============================
 //reg exp to recognize id in url
 app.get('/contentsection/:id([0-9]*)/', function(req,res) {
-	var secPath = 'partials/content/content_text'+req.params.id;//define path to content text
-	console.log('secPath '+secPath);
-	res.render ('contentsection.ejs', {
-		section: secPath,
+	console.log(req.params.id);
+	res.render ('contentsection.ejs',{
+		sectionNum: req.params.id,
 	});
 });
-
-var ejs = require('ejs');
-var myFileLoad = function (filePath) {
-  return 'myFileLoad: ' + fs.readFileSync(filePath);
-};
- 
-ejs.fileLoader = myFileLoad;
 // //============================COURSE COMPLETE============================
 // app.get('/coursepass', isLoggedIn, function (req,res) {
 // 	res.render('coursepass.ejs');//check if pass in var

@@ -9,6 +9,7 @@ var nodemailer = require('nodemailer');
 var passport = require('passport');
 //var flash    = require('connect-flash');
 var flash = require ('connect-flash');
+var fs = require('fs');
 
 var morgan       = require('morgan');
 var cookieParser = require('cookie-parser');
@@ -44,7 +45,7 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 // routes ======================================================================
 app.use(express.static('static', {redirect : false}));
 require('./app/routes.js')(app, passport,async, crypto
-, nodemailer); // load our routes and pass in our app and fully configured passport
+, nodemailer, fs); // load our routes and pass in our app and fully configured passport
 
 // launch ======================================================================
 app.listen(port);

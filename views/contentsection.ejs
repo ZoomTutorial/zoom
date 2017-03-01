@@ -1,14 +1,26 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
 <head>
-    <%include partials/head.ejs%>  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Content</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">   
+    <!-- Custom CSS -->
+    <link href="../../css/one-page-wonder.css" rel="stylesheet">
+    <link href = "../../css/stylesheets.css" rel = "stylesheet">
 </head>
 
-<body id = "content-body">
+<body>
 
     <!-- Navigation -->
-    <nav class="content navbar navbar-inverse navbar-fixed-top" role="navigation"><%include partials/navbar/navbar.ejs%>
+    <nav class="content navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <%include partials/navbar/navbar.ejs%>
     </nav>  
     
     <!-- Full Width Image Header -->
@@ -19,13 +31,33 @@
             </div>
         </div>
     </header>
-    <div class = "content-container">
+    <div>
     <!-- pass in a section variable from routes to include a right section -->
-        <%if (section.length > 0) {%>
-            <% include(section)%>
-        <% } %>          
+    <% if (sectionNum == 1) {%>
+        <% include partials/content/content_text1.ejs%>
+    <% }%>
+    <% if (sectionNum == 2) {%>
+        <% include partials/content/content_text2.ejs%>
+    <% }%>
+    <% if (sectionNum == 3) {%>
+        <% include partials/content/content_text3.ejs%>
+    <% }%>
+    <% if (sectionNum == 4) {%>
+        <% include partials/content/content_text4.ejs%>
+    <% }%>
+    <% if (sectionNum == 5) {%>
+        <% include partials/content/content_text5.ejs%>
+     <% }%>
+    <% if (sectionNum == 6) {%>
+        <% include partials/content/content_text6.ejs%>
+    <% }%>
+    <% if (sectionNum == 7) {%>
+        <% include partials/content/content_text7.ejs%>
+    <% }%>
+    <% if (sectionNum == 10) {%>
+        <% include partials/content/content_text10.ejs%>
+    <% }%>
     </div>
-
     <!-- Footer -->
     <footer>
         <div class="row">
@@ -37,14 +69,6 @@
 
     </div>
     <!-- /.container -->
-
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-    <!-- TODO should I put that in separate script? -->
-    <script src = "js/func.js">
-    </script>
 
 </body>
 
