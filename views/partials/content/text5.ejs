@@ -31,22 +31,30 @@
 	<li id="leave"><b>Leave the meeting</b> - removes you from the meeting.</li>
 	</ul>
 	QUIZ:
-	<ol class="quiz">
-		<li><div>How do you mute and unmute your microphone </div>
-			<input type="radio" name="q1" value="1">a) Click the microphone icon for both mute and unmute</br>
-			<input type="radio" name="q1"  value="2">b) Click the microphone icon to turn on the mic and the mute button to mute the mic</br>
-			<input type="radio" name="q1"  value="3">c) Click either the microphone icon or the camera icon</br>
-			<input type="radio" name="q1"  value="4">d) Turn off your speakers using the computer volume control</br>
-		</li>
-	</ol>
-	QUIZ:
-	<ol class="quiz">
-		<li><div>To raise your hand,</div>
-			<input type="radio" name="q2" value="1">a) right-click on the my video </br>
-			<input type="radio" name="q2"  value="2">b) click the caret next to the microphone icon</br>
-			<input type="radio" name="q2"  value="3">c) wave into the camera</br>
-			<input type="radio" name="q2"  value="4">d) open the Participants screen and click "Raise Hand" at the bottom of the window.</br>
-		</li>
-	</ol>
+	<form>
+		<div class = "form-group">
+			<ol class="quiz">
+				<h4>How do you mute and unmute your microphone </h4>
+				<input class="form-check-input" type="hidden" name="quizzNum" value="7">	
+					<input class="form-check-input" type="radio" name="q1" value="0"> a) Click the microphone icon for both mute and unmute</br>
+					<input class="form-check-input"type="radio" name="q1"  value="1"> b) Click the microphone icon to turn on the mic and the mute button to mute the mic</br>
+					<input class="form-check-input" type="radio" name="q1"  value="2"> c) Click either the microphone icon or the camera icon</br>
+					<input class="form-check-input" type="radio" name="q1"  value="3"> d) Turn off your speakers using the computer volume control</br>
+			</ol>
+		</div>
+		<div class = "form-group">
+			QUIZ:
+			<ol class="quiz">
+				<h4>To raise your hand,</h4>
+				<input class="form-check-input" type="hidden" name="quizzNum" value="8">	
+					<input class="form-check-input" type="radio" name="q2" value="0"> a) right-click on the my video </br>
+					<input class="form-check-input"type="radio" name="q2"  value="1"> b) click the caret next to the microphone icon</br>
+					<input class="form-check-input"type="radio" name="q2"  value="2"> c) wave into the camera</br>
+					<input class="form-check-input"type="radio" name="q2"  value="3"> d) open the Participants screen and click "Raise Hand" at the bottom of the window.</br>
+				</li>
+			</ol>
+		</div>
+		<button type="submit" class="btn btn-primary">Submit</button>
+	</form>
 </div>
 <!-- <button type="submit" data-toggle="collapse" class="btn btn-warning btn-lg">Submit</button> -->

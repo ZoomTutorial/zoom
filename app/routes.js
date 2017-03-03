@@ -231,7 +231,6 @@ app.get('/send',function(req,res){
 
 app.get('/verify',function(req,res){
 if((req.protocol+"://"+req.get('host'))==("http://"+host)) {
-	console.log("Domain is matched. Information is from Authentic email");
 	if(req.query.id==rand) 		//res.end("<h1>Email "+mailOptions.to+" is been Successfully verified");
 		res.render('emailconfirm.ejs', {message: req.flash ('signupMessage')});
 	else 
@@ -249,14 +248,14 @@ app.get('/content', isLoggedIn, function (req,res) {
 
 //============================CONTENT SECTION============================
 //reg exp to recognize id in url
-var sec_Num;
+var count;
 var all_Num = 8; //number of sections
 app.get('/contentsection/:id([0-9]*)/', isLoggedIn, function(req,res) {
 	initDisable();
-	sec_Num = req.params.id;
+	count = req.params.id;
 	disableArray[0] = "active";
 	res.render ('contentsection.ejs',{
-		sectionNum: sec_Num,
+		sectionNum: count,
 		disable: disableArray,
 	});
 });
@@ -278,8 +277,8 @@ app.post('/contentsection', isLoggedIn, disableNav, function (req,res) {
 
 
 function disableNav () {
-	sec_Num++
-	disableArray[sec_Num] = "active";//set new section to active
+	count++
+	disableArray[count] = "active";//set new section to active
 }
 // //============================COURSE COMPLETE============================
 // app.get('/coursepass', isLoggedIn, function (req,res) {
