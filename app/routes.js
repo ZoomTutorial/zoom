@@ -272,7 +272,7 @@ function initDisable () {
 
 //TODO disable pages, that user doesn't have access to by passing a variable?
 //reset active-disable nav links
-app.post('/contentsection', isLoggedIn, disableNav, function (req.res) {
+app.post('/contentsection', isLoggedIn, disableNav, function (req,res) {
 
 })
 
