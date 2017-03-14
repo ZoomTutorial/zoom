@@ -29,14 +29,7 @@
 
 /*==========================CONTENT==========================*/
 
-.list-group {
-	font-size: 30px;
-	width:100%;
-	height: 100%;
-	margin:0px;
-}
-
-.content-container {
+.content-container, .column-content {
 	padding:0px;
 	margin: 0px;
 }
@@ -58,7 +51,29 @@
 	font-size: 25px;
 }
 
+.content-overview {
+	font-size:18px;
+	color: #422B8D;
+}
 
+.border-void-table {
+	border: none;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+td {
+	border-right: 1px solid black;
+	border-left: 1px solid black;
+	padding: 5px;
+}
+
+table, th{
+	border: 1px solid black;
+	padding:5px;
+}
 #content-text1,#content-text2, #content-text3, #content-text4, #content-text5, #content-text6, #content-text7, #content-text8, #content-text9, #content-text10 {
 	font-size: 14px;
 	text-align: left;

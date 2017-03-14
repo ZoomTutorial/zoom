@@ -6,60 +6,56 @@
 </head>
 
 <body id = "content-body">
-
-    <!-- Navigation -->
-    <nav class="content navbar navbar-inverse navbar-fixed-top" role="navigation"><%include partials/navbar/navbar.ejs%>
+     <!-- Navigation -->
+    <nav class="content navbar navbar-inverse navbar-fixed-top" role="navigation"><%include partials/navbar/contentnav.ejs%>
     </nav>  
     
     <!-- Full Width Image Header -->
     <header class = "content header-image">
           <div class="headline">
-            <!-- <div class="container"> --> 
                 <h1 class = "content-header" style = "font-size: 100px">Content</h1>  
-            <!-- </div> -->
         </div>
     </header>
-    <div class = "content-container">
-            <!-- CONTENT 1 -->
-            <li class="list-group-item content-div">
-                <a href = "/contentsection/1/" class = "buttonlink">Download and Install</a>
-            </li>
+    <div class = "container-fluid">
+        <div class = "row">
+            <div class = "column-content col-sm-6">
+                <div class = "content-container">
+                    <!-- CONTENT 1 -->
+                    <li class="list-group-item content-div">
+                        <a href = "/contentsection/1/" class = "buttonlink">Download and Install</a>
+                    </li>
 
-            <!-- CONTENT 3 -->
-            <li class="list-group-item content-div">
-                <a href = "/contentsection/3/" class = "buttonlink">Join Meeting</a> 
-            </li>
+                    <!-- CONTENT 3 -->
+                    <li class="list-group-item content-div">
+                        <a href = "/contentsection/3/" class = "buttonlink">Join Meeting</a> 
+                    </li>
 
-            <!-- CONTENT 4 -->
-            <li class="list-group-item content-div">
-                <a href = "/contentsection/4/" class = "buttonlink" id = "content-header4">Settings</a>
-            </li>
+                    <!-- CONTENT 4 -->
+                    <li class="list-group-item content-div">
+                        <a href = "/contentsection/4/" class = "buttonlink" id = "content-header4">Settings</a>
+                    </li>
 
-            <!-- CONTENT 6 -->
-            <li class="list-group-item content-div">
-                <a href = "/contentsection/6/" class = "buttonlink">Menu Options</a> 
-            </li>
+                    <!-- CONTENT 6 -->
+                    <li class="list-group-item content-div">
+                        <a href = "/contentsection/6/" class = "buttonlink">Menu Options</a> 
+                    </li>
 
-            <!-- CONTENT 7 -->
-            <li class="list-group-item content-div">
-                <a href = "/contentsection/7/" class = "buttonlink">Troubleshooting</a>
-            </li>
+                    <!-- CONTENT 7 -->
+                    <li class="list-group-item content-div">
+                        <a href = "/contentsection/7/" class = "buttonlink">Troubleshooting</a>
+                    </li>
+                </div>
+            </div>
+                <!-- /.container -->     
+             <div class = "column-content col-sm-6">
+                <% include partials/content/text7.ejs%>
+            </div>
+        </div>
     </div>
-    <!-- Footer -->
+     <!-- Footer -->
     <footer>
         <% include partials/footer.ejs%>
     </footer>
-
-    </div>
-    <!-- /.container -->
-
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-    <!-- TODO should I put that in separate script? -->
-    <script src = "js/func.js">
-    </script>
 
 </body>
 
