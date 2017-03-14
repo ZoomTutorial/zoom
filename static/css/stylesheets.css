@@ -19,6 +19,8 @@
 .container, html, body {
 	height: 100%;
 	width: 100%;
+	padding: 0px;
+	margin: 0px;
 }
 
 #index-container {
@@ -42,9 +44,7 @@
 .content.header-image {
 	background-image:url('../images/content-header-background.jpg');
 	background-position: bottom;
-	max-height: 40%;
-	text-align: center;
-	color: #E4F0F3;
+	max-height: 50%;
 }
 
 .text-muted {
@@ -55,11 +55,12 @@
 	width: 100%;
 	max-height:20%;
 	text-align: center;
-	font-size: 22px;
+	font-size: 25px;
 }
 
+
 #content-text1,#content-text2, #content-text3, #content-text4, #content-text5, #content-text6, #content-text7, #content-text8, #content-text9, #content-text10 {
-	font-size: 16px;
+	font-size: 14px;
 	text-align: left;
 	padding: 13px;
 	margin:0px;
@@ -67,22 +68,17 @@
 }
 
 .content-link{
-	font-size: 16px;
+	font-size: 14px;
 	color: #D28EE4;
 }
 
-/*on collapse change color of header*/
-.download-text-subheader {
-	font-size: 20px;
-	color: #1BD7B8;
+.content-header {
+	color: #149AA4;
+	font-size: 100px;
 }
 
-#content-header4 {
+#content-header4,#content-refer {
 	color: red;
-}
-
-#content-refer {
-	color:red;
 }
 
 .content-menu-dropdown {
@@ -94,6 +90,10 @@
     border:none; 
     padding:0!important;
     outline-style: none;
+ }
+
+ .buttonlink:active {
+ 	color: white;
  }
 
  #content-body {

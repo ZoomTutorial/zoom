@@ -280,10 +280,6 @@ function disableNav () {
 	count++
 	disableArray[count] = "active";//set new section to active
 }
-// //============================COURSE COMPLETE============================
-// app.get('/coursepass', isLoggedIn, function (req,res) {
-// 	res.render('coursepass.ejs');//check if pass in var
-// });
 
 //============================ABOUT============================
 app.get('/about', function (req, res) {

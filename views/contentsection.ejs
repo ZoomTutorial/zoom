@@ -16,19 +16,19 @@
 
 <body>
     <!-- Navigation -->
+    <div id = "divCheckbox" style = "display:none;">
+    <h2 class = "content-header5">Menu Options</h2>
+    <h2 class = content-header6>Troubleshooting</h2>
+    <h2 class = "content-header0">Download and Install</h2>
+    <h2 class= "content-header1">Steps for a Successful Meeting</h2>
+    <h2 class = "content-header2">Join Meeting</h2>
+
+    </div>
     <nav class="content navbar navbar-inverse navbar-fixed-top" role="navigation">
         <%include partials/navbar/navbar.ejs%>
     </nav>  
     
-    <!-- Full Width Image Header -->
-    <header class = "content header-image">
-            <div class="headline">
-            <div class="container">
-
-            </div>
-        </div>
-    </header>
-    <div class = contentsection-container>
+       
     <!-- pass in a section variable from routes to include a right section -->
     <% if (sectionNum == 1) {%>
         <% include partials/content/text0.ejs%>
@@ -59,11 +59,6 @@
    <footer>
         <% include partials/footer.ejs%>
     </footer>
-
-    </div>
-    <!-- /.container -->
-
-    </div>
     
     <!-- jQuery -->
     <script src="../../js/jquery.js"></script>
