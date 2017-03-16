@@ -35,10 +35,11 @@
 	padding-right:5%;
 }
 
-#header-index-h1 {
-	text-align:left;
-	margin-top:5%;
+.featurette {
+	margin-top: 4%;
+	margin-bottom: 2%;
 }
+
 
 /*==========================CONTENT==========================*/
 
@@ -183,6 +184,24 @@ footer {
 
 input, button {
 	border-radius:0px;
+}
+
+
+.big-header {
+	font-size: 550%;
+	text-align:center;
+	font-family: 'Megrim', cursive;
+	font-weight: bold;
+}
+
+.mid-header {
+	font-family: 'Dosis', sans-serif;
+}
+
+.reg-text {
+	font-family: 'Raleway', sans-serif;
+	font-size: 115%;
+	color: #56636E;
 }
 
 #flash-jumbotron {
