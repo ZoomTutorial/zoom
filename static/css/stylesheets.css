@@ -8,14 +8,13 @@
     display: block;
     height: 55%;
     text-align: center;
-    background-color: #fafafa;
     padding-top:40px;
     max-height:55%;
 }
 
 #index-image {
 	/*position: absolute;*/
-	margin:0% 0% 0% 13%;
+	margin:0% 0% 0% 5%;
 	max-width:100%;
 	max-height:100%;
 	display: block;
@@ -48,10 +47,12 @@
 	margin: 0px;
 }
 
-.content.header-image {
-	background-image:url('../images/content-header-background.jpg');
-	background-position: bottom;
-	max-height: 50%;
+.content-header-image {
+	background-position: center;
+	margin-top:40px;
+	max-height: 40%;
+	max-width:90%;
+	zoom: 80%;
 }
 
 .text-muted {
@@ -133,12 +134,20 @@ table, th {
 
 /*==========================LOGIN==========================*/
 .login {
-/*	background-image: url('../images/login.jpg');
+	background-image: url('../images/login5.svg');
 	background-repeat: no-repeat;
-    -webkit-background-size: cover;
+    /*-webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: cover;*/
+*/    background-size: cover;
+    /*background-position:center;*/
+    position: relative;
+    overflow-x: scroll;
+}
+
+
+#login-form {
+	background: rgba(135, 164, 209, 0.1);
 }
 
 /*==========================EMAil CONFIRM==========================*/
@@ -187,18 +196,23 @@ input, button {
 }
 
 
-.big-header {
+.big-header1 {
 	font-size: 550%;
 	text-align:center;
 	font-family: 'Megrim', cursive;
 	font-weight: bold;
 }
 
-.mid-header {
+.mid-header1 {
 	font-family: 'Dosis', sans-serif;
 }
 
-.reg-text {
+.small-header1 {
+	font-family: 'VT323', monospace;
+	font-size: 22px;
+}
+
+.reg-text1 {
 	font-family: 'Raleway', sans-serif;
 	font-size: 115%;
 	color: #56636E;
