@@ -14,8 +14,8 @@
 
 #index-image {
 	/*position: absolute;*/
-	margin:0% 0% 0% 5%;
-	width:100%;
+	margin:0% 0% 0%7%;
+	max-width:100%;
 	max-height:100%;
 	display: block;
 	zoom:150%;
@@ -136,7 +136,7 @@ table, th {
  }
 
 /*==========================LOGIN==========================*/
-.login {
+#login {
 	background-image: url('../images/login5.svg');
 	background-repeat: no-repeat;
     /*-webkit-background-size: cover;
@@ -153,6 +153,20 @@ table, th {
 	background: rgba(135, 164, 209, 0.1);
 }
 
+/*==========================SIGNUP==========================*/
+#signup {
+	background-image: url('../images/signup.jpg');
+	background-repeat: no-repeat;
+    background-size: cover;
+    background-position:right;
+    position: relative;
+    overflow-x: scroll;
+
+}
+
+#signup-form {
+	background: rgba(156,165,179,0.2);
+}
 /*==========================EMAil CONFIRM==========================*/
 .fa-check-circle-o {
 	color: #118E47;
@@ -173,12 +187,22 @@ table, th {
 
 
 /*==========================FORGOT PASS==========================*/
-#bodyForgot {
-	padding: 5%;
+.bodyForgot {
+	background-image: url('../images/forgotpass1.jpg');
+	background-repeat: no-repeat;
+    background-size: cover;
+    background-position:top;
+    position: relative;
+    overflow-x: scroll;
+    padding-top:13%;
 }
 
 #submitForgot {
-	margin: 5px;
+	margin-top: 5px;
+}
+
+.forgotpass-form {
+	background:rgba(212,165,223,0.1);
 }
 
 /*==========================FOR COMPONENTS==========================*/
@@ -196,6 +220,10 @@ footer {
 
 input, button {
 	border-radius:0px;
+}
+
+.alert {
+	margin-top:10px;
 }
 
 

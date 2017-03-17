@@ -6,28 +6,28 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
     <link rel = "stylesheet" href = "css/stylesheets.css">
-    <style>
-        body        { padding-top:80px; }
-    </style>
+    <!-- Google fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Assistant:200|Dosis|Josefin+Sans:300|Megrim|Poppins:500|Raleway|VT323" rel="stylesheet">
     <script src="https://use.fontawesome.com/f20b095bb4.js"></script>
 </head>
-<body id = "bodyForgot">
+<body class = "bodyForgot">
 	<div class="container">
-		<% if (message.length) { %>
-        <div class="alert <%=alertType%>"><%= message %></div>
+		<div class="col-sm-6 col-sm-offset-3 forgotpass-form">
+			<% if (message.length) { %>
+        <div class="reg-text1 alert <%=alertType%>"><%= message %></div>
     	<% } %>
-		<div class="col-sm-6 col-sm-offset-3">
-			<h1><span class="glyphicon glyphicon-lock"></span> Forgot passsword?</h1>	
+
+			<h1 class = "mid-header1"><span class="glyphicon glyphicon-lock"></span> Forgot passsword?</h1>	
 			<form action="/forgotpass" method="post">
-				<label for = "emailForgot"> Email address: </label>
+				<label for = "emailForgot" class = "small-header1"> Email: </label>
 				<div class = "form-group input-group">
 					<span class = "input-group-addon">
 						@ 
 					</span>
 					<input type = "email" class = "form-control" aria-describedby="emailInfo" id = "emailForgot" name = "email">
 				</div>
-				<small id = "emailInfo" class="form-text text-muted">Input your email address, and we will send you an email to reset your password</small> 
-				<p><button type="submit" id = "submitForgot" class="btn btn-warning btn-lg">Send code</button></p>
+				<small id = "emailInfo" class = "reg-text1" style = "color:black">Input your email address, and we will send you an email to reset your password</small> 
+				<p><button type="submit" id = "submitForgot" class="btn btn-warning btn-lg small-header1">Send code</button></p>
 			</form>
 		</div>
 	</div>

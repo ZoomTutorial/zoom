@@ -6,19 +6,23 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
     <link rel = "stylesheet" href = "css/stylesheets.css">
+    <!-- Google fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Assistant:200|Dosis|Josefin+Sans:300|Megrim|Poppins:500|Raleway|VT323" rel="stylesheet">
+    <style>
+
     <style>
         body        { padding-top:80px; }
     </style>
     <script src="https://use.fontawesome.com/f20b095bb4.js"></script>
 </head>
-<body id = "bodyForgot">
+<body class = "bodyForgot">
 	 <!-- show any messages that come back with authentication -->
     
 	<div class="container">
-		<div class="col-sm-6 col-sm-offset-3">
-			<h1><span class="glyphicon glyphicon-lock"></span> Reset passsword</h1>	
+		<div class="col-sm-6 col-sm-offset-3 forgotpass-form">
+			<h1 class = "mid-header1"><span class="glyphicon glyphicon-lock"></span> Reset passsword</h1>	
 			<form action="/reset" method="post">
-				<label for = "passReset"> Set password: </label>
+				<label for = "passReset" class = "small-header1"> Set password: </label>
 				<div class = "form-group input-group">
 					<span class = "input-group-addon">
 						<i class="glyphicon glyphicon-lock">
@@ -26,7 +30,7 @@
             		</span>
 					<input type = "password" class = "form-control" aria-describedby="passInfo" id = "emailForgot" name = "password">
 				</div>
-				<p><button type="submit" id = "submitForgot" class="btn btn-warning btn-lg">Reset Password</button></p>
+				<p><button type="submit" id = "submitForgot" class="btn btn-warning btn-lg small-header1">Reset Password</button></p>
 			</form>
 		</div>
 	</div>
