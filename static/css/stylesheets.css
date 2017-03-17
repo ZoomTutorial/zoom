@@ -8,7 +8,7 @@
     display: block;
     height: 55%;
     text-align: center;
-    padding-top:40px;
+    padding-top:50px;
     max-height:55%;
 }
 
@@ -47,9 +47,12 @@
 	margin: 0px;
 }
 
+.buttonlink.mid-header1 {
+	font-size: 28px;
+}
 #content-header-image {
 	background-position: center;
-	margin-top:40px;
+	margin-top:50px;
 	max-height: 40%;
 	width:100%;
 	/*zoom: 0%;*/
