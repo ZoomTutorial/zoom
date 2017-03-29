@@ -69,11 +69,6 @@
 	font-size: 25px;
 }
 
-.content-overview {
-	font-size:18px;
-	color: #422B8D;
-}
-
 table {
 	border-collapse: collapse;
 }
@@ -97,14 +92,10 @@ table, th {
 }
 
 .content-link{
-	font-size: 14px;
+	font-size: 16px;
 	color: #D28EE4;
 }
 
-.content-header {
-	color: #149AA4;
-	font-size: 100px;
-}
 
 #content-header4,#content-refer {
 	color: red;
@@ -176,7 +167,7 @@ table, th {
 /*set up input fields width*/
 .col-md-4 {
 	padding-left:30px;
-	padding-right:30px;
+	/*padding-right:10px;*/
 	border-radius:0;
 }
 
@@ -226,6 +217,9 @@ input, button {
 	margin-top:10px;
 }
 
+em {
+	font-size:17px;
+}
 
 .big-header1 {
 	font-size: 550%;
@@ -234,10 +228,13 @@ input, button {
 	font-weight: bold;
 }
 
-.mid-header1 {
+.mid-header1, .big-header2,.mid-header2 {
 	font-family: 'Dosis', sans-serif;
 }
 
+.big-header2 {
+	text-align:center;
+}
 .small-header1 {
 	font-family: 'VT323', monospace;
 	font-size: 22px;
@@ -246,6 +243,23 @@ input, button {
 .reg-text1 {
 	font-family: 'Raleway', sans-serif;
 	font-size: 115%;
+	color: #56636E;
+}
+
+.reg-text2 {
+	font-family: 'Josefin Sans', sans-serif;
+	font-size:18.5px;
+	color: #2E819F;
+}
+
+.mid-header2 {
+	font-size:193%;
+	color:#91D826;
+}
+
+.mid-header3 {
+	font-family: 'Raleway', sans-serif;
+	font-size: 18px;
 	color: #56636E;
 }
 
