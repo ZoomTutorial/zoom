@@ -24,27 +24,30 @@
     
        
     <!-- pass in a section variable from routes to include a right section -->
+    <!-- download and install -->
     <% if (sectionNum == 1) {%>
         <% include partials/content/text0.ejs%>
     <% }%>
     <% if (sectionNum == 2) {%>
         <% include partials/content/text1.ejs%>
     <% }%>
+    <!-- join meeting -->
     <% if (sectionNum == 3) {%>
         <% include partials/content/text2.ejs%>
     <% }%>
+    <!-- settings -->
     <% if (sectionNum == 4) {%>
         <% include partials/content/text3.ejs%>
     <% }%>
-    <% if (sectionNum == 5) {%>
-        <% include partials/content/text5.ejs%>
-     <% }%>
+    <!-- menu -->
     <% if (sectionNum == 6) {%>
         <% include partials/content/text5.ejs%>
-    <% }%>
+     <% }%>
+     <!-- troubleshooting -->
     <% if (sectionNum == 7) {%>
         <% include partials/content/text6.ejs%>
     <% }%>
+    <!-- overview -->
     <% if (sectionNum == 10) {%>
         <% include partials/content/text7.ejs%>
     <% }%>

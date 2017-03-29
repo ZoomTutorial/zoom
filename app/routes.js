@@ -39,57 +39,57 @@ app.post('/signup', passport.authenticate('local-signup', {
 //============================PROFILE============================
 //protected so you have to be logged in to visit
 //route middleware to verify
-app.get('/profile', isLoggedIn, function (req,res) {
-	res.render('profile.ejs', {
-		user : req.user, //get user our of sesh and pass to template
-		alertDiv: '',
-		message: req.flash ('changePassMessage')
-	});
-});
+// app.get('/profile', isLoggedIn, function (req,res) {
+// 	res.render('profile.ejs', {
+// 		user : req.user, //get user our of sesh and pass to template
+// 		alertDiv: '',
+// 		message: req.flash ('changePassMessage')
+// 	});
+// });
 
-app.post('/profile', function (req,res){
-	var success = 1;
-	var alert = "";
-	var changePassMessage = '';
-	if (!(req.body.newPassword === req.body.confirmPassword))  {
-		changePassMessage = ' Password Confirmation doesn\'t match new Password';
-		success = 0;
-		alert = "alert-danger"; 
-	} 
-	var curPassword = req.body.password;
-	var newPassword = req.body.newPassword;
-	var curUser = req.user;
-	req.login(curUser, function(err) {
-		console.log(arguments);
-		if (!curUser.validPassword(curPassword)) {
-			changePassMessage = ' Oops! Wrong Password. ';
-			success = 0;
-			alert ="alert-danger";
-		}
-		if (err) {
-			changePassMessage = ''+ err;
-			success = 0;
-			alert = "alert-danger";
-		}
-		if (success == 1) {
-			changePassMessage = 'Yaaay! Successfully updated password';
-			alert = "alert-success";
-			curUser.local.password = curUser.generateHash(newPassword);
-			curUser.save(function(err) {
-                if (err)
-                    throw err;
-            });			
-		}
-		//render profile page with flash message
-		req.flash('changePassMessage', changePassMessage);
-		alertDiv  = alert;
-		res.render('profile.ejs', {
-			user: curUser,
-			alertDiv: alert, 
-			message: req.flash('changePassMessage') //CHECK
-		})
-	})
-});
+// app.post('/profile', function (req,res){
+// 	var success = 1;
+// 	var alert = "";
+// 	var changePassMessage = '';
+// 	if (!(req.body.newPassword === req.body.confirmPassword))  {
+// 		changePassMessage = ' Password Confirmation doesn\'t match new Password';
+// 		success = 0;
+// 		alert = "alert-danger"; 
+// 	} 
+// 	var curPassword = req.body.password;
+// 	var newPassword = req.body.newPassword;
+// 	var curUser = req.user;
+// 	req.login(curUser, function(err) {
+// 		console.log(arguments);
+// 		if (!curUser.validPassword(curPassword)) {
+// 			changePassMessage = ' Oops! Wrong Password. ';
+// 			success = 0;
+// 			alert ="alert-danger";
+// 		}
+// 		if (err) {
+// 			changePassMessage = ''+ err;
+// 			success = 0;
+// 			alert = "alert-danger";
+// 		}
+// 		if (success == 1) {
+// 			changePassMessage = 'Yaaay! Successfully updated password';
+// 			alert = "alert-success";
+// 			curUser.local.password = curUser.generateHash(newPassword);
+// 			curUser.save(function(err) {
+//                 if (err)
+//                     throw err;
+//             });			
+// 		}
+// 		//render profile page with flash message
+// 		req.flash('changePassMessage', changePassMessage);
+// 		alertDiv  = alert;
+// 		res.render('profile.ejs', {
+// 			user: curUser,
+// 			alertDiv: alert, 
+// 			message: req.flash('changePassMessage') //CHECK
+// 		})
+// 	})
+// });
 
 
 //============================FORGOT PASSWORD============================
