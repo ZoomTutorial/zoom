@@ -1,0 +1,75 @@
+/* content-style.css */
+
+.course-title {
+	font-family: Dosis, sans-serif;
+	font-size: 5rem;
+	text-align: center;
+	color: #149AA4;
+}
+
+.color-red {
+	color: #44;
+}
+
+.course-graphic {
+	width: 100%; 
+	margin:2rem; 
+	padding: 2rem;
+	text-align:center;
+	color:#a44
+}
+.course-graphic-image {
+	width: 95%; 
+	margin-right:auto; 
+	margin-left:auto;
+}
+
+.course-graphic-caption {
+	
+}
+
+.course-box {
+	background: #ee8; text-align: center; padding: 0.5rem
+}
+
+table {
+	color: #149AA4;
+	border: 2px solid #aaa;
+	border-radius: 10px;
+}
+
+td {
+	border: 1px solid #aaa;
+}
+th {
+	text-align: center;
+	background: #ee8;
+	border: none;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	color: #149AA4;
+}
+
+h1 {
+	font-size: 5rem;
+}
+h2 {
+	font-size: 4rem;
+}
+h3 {
+	font-size: 3rem;
+}
+h4 {
+	font-size: 2rem;
+}
+h5 {
+	font-size: 1.75rem;
+}
+h6 {
+	font-size: 1.5rem;
+}
+
+p {
+	font-size: 1em;
+}
