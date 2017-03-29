@@ -1,16 +1,36 @@
-<div style="text-align: center; padding: 2rem; display: inline-flex; height: 400px; width: 400px; border: 1px solid black;">
-	<div style="width: 99%; margin: auto 2rem;">
-		<img src="images/zoom-3.jpg" alt="Zoom Logo" width="90"/>
+<!DOCTYPE html>
+<html lang="en">
 
-		<h2>The Zoom Tutorial</h2>
-		<h3>Module 1: Joining a Meeting</h3>
-		<p>version 1.0</p>
-		
-		<p>by Luba Le Xuan</p>
-		<p>University of Rochester Medical Center<br>Psychiatry Audiovisual Services </p>
+<head>
+    <%include partials/head.ejs%>  
+</head>
+<body id = "about-body">
+   <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <%include partials/navbar/homenavbar.ejs%>
+    </nav>  
+	<div id = "about-container">
+		<div class = "row">
+			<div class = "col-md-4">
+			</div>
+			<div class = "col-md-8">
+				<img src="images/zoom-3.jpg" alt="Zoom Logo" width="90"/>
+				<h2 class = "mid-header1">The Zoom Tutorial</h2>
+				<p class = "reg-text1">version 1.0</p>
+				<p class = "reg-text1">by Luba Le Xuan</p>
+				<p class = "reg-text1">University of Rochester Medical Center<br>Psychiatry Audiovisual Services </p>
 
-		<p>&copy; 2016 University of Rochester<br>
-		<img src="images/UR.4col.v3.png" alt="University of Rochester Logo" width="200" />
-		</p>
+				<p class = "reg-text1">&copy; 2016 University of Rochester<br>
+				<img src="images/UR.4col.v3.png" alt="University of Rochester Logo" width="200" />
+				</p>
+			</div>
+		</div>
 	</div>
-</div>
+</body>
+    <!-- Footer -->
+<footer>
+    <% include partials/footer.ejs%>
+</footer>
+</body>
+
+</html>

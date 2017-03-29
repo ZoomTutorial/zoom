@@ -177,6 +177,21 @@ table, th {
 }
 
 
+/*==========================ABOUT==========================*/
+#about-body {
+	padding:50px;
+	text-align:center;
+}
+
+#about-container {
+	margin-top:50px;
+	text-align:center;
+	display: inline-flex;
+	height: 400px;
+	width: 400px;
+	padding: 30px;
+	border-left: 1px solid black;
+}
 /*==========================FORGOT PASS==========================*/
 .bodyForgot {
 	background-image: url('../images/forgotpass1.jpg');
